@@ -20,11 +20,33 @@
             <span>David Kendrick</span>
           </a>
           <div class="primary-links">
-            <a href="index.html">Main page</a>
-            <a href="manitoba-cottage-search.html">Manitoba Cottage Search</a>
-            <a class="is-active" href="student-assignment-tracker.html">Student Assignment Tracker</a>
-            <a href="hermes-workflow.html">Agent Workflow</a>
+            <a href="index.html"><span class="label-full">Main page</span><span class="label-short">Home</span></a>
+            <a href="manitoba-cottage-search.html"><span class="label-full">Manitoba Cottage Search</span><span class="label-short">Cottage Search</span></a>
+            <a class="is-active" href="student-assignment-tracker.html"><span class="label-full">Student Assignment Tracker</span><span class="label-short">Assignment Tracker</span></a>
+            <a href="hermes-workflow.html"><span class="label-full">Agent Workflow</span><span class="label-short">Workflow</span></a>
           </div>
+          <details class="mobile-menu">
+            <summary aria-label="Open navigation menu">
+              <span>Menu</span>
+            </summary>
+            <div class="mobile-menu-panel">
+              <nav aria-label="Site pages">
+                <p class="mobile-menu-label">Pages</p>
+                <a href="index.html">Home</a>
+                <a href="manitoba-cottage-search.html">Cottage Search</a>
+                <a href="student-assignment-tracker.html">Assignment Tracker</a>
+                <a href="hermes-workflow.html">Workflow</a>
+              </nav>
+              <nav aria-label="Page sections">
+                <p class="mobile-menu-label">This page</p>
+                <a href="#problem">Problem</a>
+                <a href="#build">Build</a>
+                <a href="#ai-workflow">AI workflow</a>
+                <a href="#agent-api">Agent API</a>
+                <a href="#takeaways">Takeaways</a>
+              </nav>
+            </div>
+          </details>
         </nav>
         <nav class="nav-row secondary-nav" aria-label="Student Assignment Tracker sections">
           <div class="secondary-links">
@@ -268,5 +290,6 @@
         <a href="#top" class="footer-top">↑ Top</a>
       </div>
     </footer>
+    <script src="navigation.js"></script>
   </body>
 </html>

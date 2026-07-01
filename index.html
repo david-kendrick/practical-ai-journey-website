@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Building Practical AI Systems | David Kendrick</title>
+    <meta
+      name="description"
+      content="A draft portfolio page describing David Kendrick's hands-on practical AI journey: agents, workflow design, local models, browser automation, and enterprise-ready lessons."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="header-shell">
+        <nav class="nav-row primary-nav" aria-label="Site pages">
+          <a class="brand" href="index.html#top" aria-label="David Kendrick portfolio home">
+            <span>David Kendrick</span>
+          </a>
+          <div class="primary-links">
+            <a class="is-active" href="index.html">Main page</a>
+            <a href="manitoba-cottage-search.html">Manitoba Cottage Search</a>
+            <a href="student-assignment-tracker.html">Student Assignment Tracker</a>
+            <a href="hermes-workflow.html">Agent Workflow</a>
+          </div>
+        </nav>
+        <nav class="nav-row secondary-nav" aria-label="Main page sections">
+          <div class="secondary-links">
+            <a href="#journey">Journey</a>
+            <a href="#examples">Examples</a>
+            <a href="#lessons">Lessons</a>
+            <a href="#next">Next</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero section-shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Draft portfolio page</p>
+          <h1 id="hero-title">Building practical AI systems</h1>
+          <p class="hero-lede">
+            Hands-on experience turning AI into agents, automations, local model experiments, browser workflows,
+            knowledge bases, and reviewable tools tied to real software projects.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="#examples">Review examples</a>
+            <a class="button secondary" href="#next">See professional direction</a>
+            <a class="button ghost" href="hermes-workflow.html">How the workflow is structured</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Current portfolio framing">
+          <p class="panel-label">Current focus</p>
+          <ul class="signal-list">
+            <li>
+              <strong>Systems over prompts</strong>
+              <span>State, logs, scripts, review gates, and handoffs around the model.</span>
+            </li>
+            <li>
+              <strong>Agent-ready workflows</strong>
+              <span>Tools that expose structured APIs instead of forcing agents to scrape human screens.</span>
+            </li>
+            <li>
+              <strong>Enterprise relevance</strong>
+              <span>Applying practical experience to safe automation, support triage, and responsible AI adoption.</span>
+            </li>
+          </ul>
+        </aside>
+      </section>
+
+      <section id="journey" class="section-shell narrative-section" aria-labelledby="journey-title">
+        <div class="section-heading narrow">
+          <h2 id="journey-title">From curiosity to infrastructure</h2>
+          <p>
+            The thread through the work is simple: treat AI as software infrastructure, not as a novelty layer.
+          </p>
+        </div>
+
+        <div class="timeline-grid">
+          <article class="timeline-card">
+            <span class="timeline-step">Start</span>
+            <h3>An open-source agent framework and the first agent environment</h3>
+            <p>
+              My AI journey started when I heard about an open-source agent framework and wanted to
+              understand it by building with it directly. Around mid-March 2026, I spun up a DigitalOcean VPS,
+              secured access with Tailscale, connected Anthropic models, and created my first agent environment.
+            </p>
+            <p>
+              That first setup quickly moved past experimenting with prompts. It became a practical learning
+              environment for agent workflows, scheduled jobs, Telegram-style interactions, memory, logging,
+              auth flows, and small web applications.
+            </p>
+          </article>
+
+          <article class="timeline-card elevated">
+            <span class="timeline-step">Shift</span>
+            <h3>Structured AI workflows in Hermes</h3>
+            <p>
+              I later moved into Hermes as a more structured agent environment. That gave me a place to work
+              with profiles, toolsets, model routing, Obsidian-backed project memory, browser automation, and
+              clearer review gates.
+            </p>
+            <p>
+              I have also experimented with local model hosting on an Apple Silicon Mac Mini, comparing hosted
+              models with local serving paths and learning where each one fits.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="examples" class="section-shell" aria-labelledby="examples-title">
+        <div class="section-heading">
+          <h2 id="examples-title">Projects that show the shape of the work</h2>
+          <p>
+            These examples are intentionally high level. The goal is to show practical systems thinking without
+            exposing private data, credentials, family details, or live endpoints.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <article class="project-card highlight-card">
+            <div class="card-kicker">Applied workflow</div>
+            <h3>Manitoba Cottage Search</h3>
+            <p>
+              A FastAPI and HTMX listing-review app with structured intake, browser-backed extraction, scoring,
+              and provenance-aware persistence. It separates import, review, and status so new listing candidates
+              can move into a real application instead of disappearing into spreadsheet workflows.
+            </p>
+            <ul>
+              <li>Structured intake API with deduplication and audit trail</li>
+              <li>Browser-backed saved-search extraction with a freshness gate</li>
+              <li>Review tracking design that keeps rejected listings explainable</li>
+            </ul>
+            <a class="text-link" href="manitoba-cottage-search.html">Read the case study <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="project-card">
+            <div class="card-kicker">Agent architecture</div>
+            <h3>Hermes workflows and model routing</h3>
+            <p>
+              A structured AI working environment using profiles, toolsets, model selection, documentation,
+              and review gates. This is where I started treating AI work as an operating model: different
+              lanes for planning, coding, evidence gathering, local experiments, and public-facing writing.
+            </p>
+            <ul>
+              <li>Profile-based role separation</li>
+              <li>Obsidian-backed durable context</li>
+              <li>Hosted and local model tradeoff testing</li>
+            </ul>
+            <a class="text-link" href="hermes-workflow.html">Read the Agent Workflow page <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="project-card linked-card">
+            <div class="card-kicker">Agent-built web app</div>
+            <h3>Student Assignment Tracker</h3>
+            <p>
+              A mobile-first education tracker built with FastAPI, SQLite, and HTMX through an agent-assisted
+              development workflow. It models classes, schedules, assignments, semesters, and grades, then
+              documents the planned agent-facing API separately from what has shipped.
+            </p>
+            <ul>
+              <li>Concrete product model with real workflow logic</li>
+              <li>Agent-assisted build process using FastAPI, SQLite, and HTMX</li>
+              <li>Designed and planned agent API layer, not implemented</li>
+            </ul>
+            <a class="text-link" href="student-assignment-tracker.html">Read the case study <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </section>
+
+      <section id="lessons" class="section-shell lessons-section" aria-labelledby="lessons-title">
+        <div class="section-heading compact">
+          <h2 id="lessons-title">Practical AI is mostly systems work</h2>
+        </div>
+        <div class="lesson-list">
+          <article>
+            <span>01</span>
+            <h3>A prompt is not a system.</h3>
+            <p>Useful AI needs state, logs, scripts, review gates, and clear handoffs.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>The boring plumbing matters.</h3>
+            <p>OAuth, timezones, delivery channels, file ownership, and failure states are where demos become real software.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Model choice depends on the job.</h3>
+            <p>Cheap models, strong models, local models, and deterministic scripts each have a lane.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Human review is a feature.</h3>
+            <p>Especially for public communication, workflow changes, private data, and anything with external side effects.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="next" class="section-shell closing-block" aria-labelledby="next-title">
+        <div class="closing-copy">
+          <h2 id="next-title">Applying it to enterprise-relevant AI work</h2>
+          <div class="prose">
+            <p>
+              I am now translating this hands-on experience toward professional software and enterprise AI use
+              cases: internal document assistants, support-ticket triage, workflow automation, AI-assisted
+              developer productivity, and responsible Microsoft/Azure/Copilot adoption.
+            </p>
+            <p>
+              My strongest angle is practical implementation. I understand web development, real workflows,
+              messy integration points, and the need for governance. The goal is not to add AI for novelty.
+              The goal is to improve useful work safely.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span class="footer-brand">David Kendrick</span>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="manitoba-cottage-search.html">Cottage Search</a>
+          <a href="student-assignment-tracker.html">Assignment Tracker</a>
+          <a href="hermes-workflow.html">Agent Workflow</a>
+        </nav>
+        <a href="#top" class="footer-top">↑ Top</a>
+      </div>
+    </footer>
+  </body>
+</html>

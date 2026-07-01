@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manitoba Cottage Search | David Kendrick</title>
+    <meta
+      name="description"
+      content="Case study for Manitoba Cottage Search: a FastAPI and HTMX listing-review app with structured intake, browser-backed extraction, and agent-assisted workflow design."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="header-shell">
+        <nav class="nav-row primary-nav" aria-label="Site pages">
+          <a class="brand" href="index.html#top" aria-label="David Kendrick portfolio home">
+            <span>David Kendrick</span>
+          </a>
+          <div class="primary-links">
+            <a href="index.html">Main page</a>
+            <a class="is-active" href="manitoba-cottage-search.html">Manitoba Cottage Search</a>
+            <a href="student-assignment-tracker.html">Student Assignment Tracker</a>
+            <a href="hermes-workflow.html">Agent Workflow</a>
+          </div>
+        </nav>
+        <nav class="nav-row secondary-nav" aria-label="Manitoba Cottage Search sections">
+          <div class="secondary-links">
+            <a href="#problem">Problem</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#ai-role">AI role</a>
+            <a href="#lessons">Lessons</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero case-study-hero section-shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Case study</p>
+          <h1 id="hero-title">Manitoba Cottage Search</h1>
+          <p class="hero-lede">
+            A web application and listing-ingestion workflow for tracking, scoring, and reviewing Manitoba cottage
+            listings. The system combines FastAPI, SQLite, HTMX, a structured intake API, and agent-assisted
+            discovery so listing data can move into a review app with provenance instead of living in an
+            untraceable spreadsheet.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="#architecture">Review the architecture</a>
+            <a class="button secondary" href="index.html#examples">Back to examples</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel case-summary" aria-label="Case study summary">
+          <p class="panel-label">Project snapshot</p>
+          <dl class="snapshot-list">
+            <div>
+              <dt>Product</dt>
+              <dd>Real estate listing tracker with structured review workflow</dd>
+            </div>
+            <div>
+              <dt>Stack</dt>
+              <dd>FastAPI, SQLite, HTMX/Jinja, SQLAlchemy, Alembic, pytest</dd>
+            </div>
+            <div>
+              <dt>AI role</dt>
+              <dd>Scheduled watcher, browser-backed extraction, scoring, and structured intake</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd>In active development; intake pipeline exists, review tracking and extractor are still in progress</dd>
+            </div>
+            <div>
+              <dt>Discovery rule</dt>
+              <dd>Fresh Realtor.ca saved-search results with a hard 1-day age gate</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="section-shell case-overview" aria-labelledby="overview-title">
+        <div class="section-heading narrow">
+          <h2 id="overview-title">Case study at a glance</h2>
+          <p>
+            This project is useful because it turns a messy monitoring workflow into a structured application with
+            explicit provenance, clearer review decisions, and better boundaries between automation and storage.
+          </p>
+        </div>
+
+        <div class="overview-grid cottage-overview-grid">
+          <article>
+            <span>Built</span>
+            <strong>Structured intake and listing history</strong>
+            <p>The app already has the ingestion spine: listings, scores, notes, status history, and import audit tables.</p>
+          </article>
+          <article>
+            <span>In progress</span>
+            <strong>Review tracking and extractor hardening</strong>
+            <p>The strongest remaining work is dedicated review events and deterministic saved-search extraction.</p>
+          </article>
+          <article>
+            <span>Learned</span>
+            <strong>Import, review, and status should stay separate</strong>
+            <p>That separation makes the system auditable and keeps rejected listings from disappearing.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="problem" class="section-shell narrative-section case-section" aria-labelledby="problem-title">
+        <div class="case-layout">
+          <div class="case-copy">
+            <h2 id="problem-title">The data was stuck in a spreadsheet</h2>
+            <p>
+              Cottage search workflows create a slow stream of new candidates, partial duplicates, source-specific
+              gaps, and repeated review decisions. A spreadsheet can hold rows, but it cannot cleanly answer basic
+              operational questions such as how a listing entered the system, whether it was reviewed, why it was
+              rejected, or which source fields were strongest.
+            </p>
+            <p>
+              The goal was to move that workflow into a real application with a dedicated intake contract and a
+              reviewable history. If an agent is going to support the process over time, it needs structured access
+              and predictable write paths instead of browser-only manipulation or direct database edits.
+            </p>
+          </div>
+
+          <aside class="fact-card" aria-label="Core product model">
+            <p class="card-kicker">Core workflow model</p>
+            <ul class="compact-list">
+              <li>Imports record how listings enter the system</li>
+              <li>Reviews record accept/reject decisions and reasons</li>
+              <li>Status history tracks active, archived, sold, or removed states</li>
+              <li>Scores stay attached to listings, not free-floating notes</li>
+              <li>Import provenance remains queryable through audit tables</li>
+              <li>Freshness gate filters out listings older than one day by default</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="architecture" class="section-shell case-section" aria-labelledby="architecture-title">
+        <div class="section-heading narrow">
+          <h2 id="architecture-title">What exists now and how the pipeline is shaped</h2>
+          <p>
+            The current system is a SQL-backed web app with a structured intake path. The app owns the canonical
+            listing model, while agent-driven discovery stays outside the storage layer and posts into the same API
+            used for normalized imports.
+          </p>
+        </div>
+
+        <div class="case-layout flipped">
+          <div class="case-copy">
+            <p>
+              The implemented spine already includes an authenticated <code>POST /api/imports/intake</code> path,
+              listing records, score records, notes, status history, and import audit tables. That means the app can
+              already explain how data entered the system and what changed afterward.
+            </p>
+            <p>
+              The architectural split is the important part: <strong>import</strong>, <strong>review</strong>, and
+              <strong>status</strong> are treated as different concepts. The development work now focuses on making
+              review outcomes first-class so rejected candidates are still searchable and auditable instead of
+              disappearing into notes or never being recorded at all.
+            </p>
+            <p>
+              Deduplication is planned around a practical hierarchy: MLS number first, then source URL, then
+              normalized address and locality.
+            </p>
+          </div>
+
+          <aside class="fact-card" aria-label="Pipeline flow summary">
+            <p class="card-kicker">Current flow</p>
+            <ul class="compact-list">
+              <li>Hermes watcher checks the authoritative saved search</li>
+              <li>Browser-backed extraction gathers cards and detail fields</li>
+              <li>Fresh listings are scored locally</li>
+              <li>Structured JSON posts to the intake API</li>
+              <li>The app normalizes, deduplicates, and persists results</li>
+              <li>Listings become reviewable in the app instead of in a sheet</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="ai-role" class="section-shell case-section" aria-labelledby="ai-role-title">
+        <div class="section-heading narrow">
+          <h2 id="ai-role-title">AI role: discovery, scoring, and bounded automation</h2>
+          <p>
+            The agent side is intentionally narrow. It is responsible for discovery, extraction, scoring, and
+            packaging data for intake — not for bypassing the application model.
+          </p>
+        </div>
+
+        <div class="feature-grid three-up case-feature-grid">
+          <article>
+            <span>Discovery</span>
+            <strong>Saved-search extraction</strong>
+            <p>The watcher uses a Realtor.ca saved search as the discovery source instead of relying on prompt-only browsing.</p>
+          </article>
+          <article>
+            <span>Boundary</span>
+            <strong>API-first persistence</strong>
+            <p>Everything still goes through the same authenticated intake path so provenance and normalization stay consistent.</p>
+          </article>
+          <article>
+            <span>Failure handling</span>
+            <strong>Explicit error states</strong>
+            <p>The extractor design calls for visible blockers and age-gate outcomes rather than silent zero-result runs.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="lessons" class="section-shell case-section" aria-labelledby="lessons-title">
+        <div class="section-heading narrow">
+          <h2 id="lessons-title">What I learned</h2>
+          <p>
+            The key lesson is not about real estate data. It is about workflow design: once the application exposes a
+            structured, authenticated write path, automation becomes safer to layer on top.
+          </p>
+        </div>
+
+        <div class="lesson-list">
+          <article>
+            <span>01</span>
+            <h3>The intake API is the linchpin.</h3>
+            <p>A stable write contract makes browser automation and scoring additive instead of dangerous.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Auditability depends on separation.</h3>
+            <p>Import, review, and status look similar in a sheet, but they create better software when modeled separately.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Failure states should be explicit.</h3>
+            <p>“No listings found” is not enough. Good automation says whether the source was empty, blocked, stale, or broken.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Human review is still part of the product.</h3>
+            <p>The point is not blind end-to-end automation. The point is better candidate intake and better decisions.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span class="footer-brand">David Kendrick</span>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="manitoba-cottage-search.html">Cottage Search</a>
+          <a href="student-assignment-tracker.html">Assignment Tracker</a>
+          <a href="hermes-workflow.html">Agent Workflow</a>
+        </nav>
+        <a href="#top" class="footer-top">↑ Top</a>
+      </div>
+    </footer>
+  </body>
+</html>

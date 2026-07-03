@@ -96,7 +96,7 @@ body::before {
 .primary-links,
 .secondary-links { display: flex; align-items: center; flex-wrap: wrap; }
 .primary-links { gap: clamp(10px, 1.8vw, 18px); }
-.secondary-links { gap: clamp(12px, 2.2vw, 22px); font-size: 0.95rem; font-weight: 650; }
+.secondary-links { margin-left: auto; gap: clamp(12px, 2.2vw, 22px); font-size: 0.95rem; font-weight: 650; }
 .primary-links a,
 .secondary-links a { min-height: 40px; display: inline-flex; align-items: center; }
 .primary-links a {

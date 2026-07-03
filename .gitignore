@@ -1,0 +1,14 @@
+# Python virtualenvs
+.venv/
+venv/
+
+# Python bytecode caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Type-check / tool caches
+.mypy_cache/
+.pytype/
+.ruff_cache/
+.pytest_cache/

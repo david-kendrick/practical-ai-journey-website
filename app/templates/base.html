@@ -24,7 +24,7 @@ cases; prefer the variables above.
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ title }} | David Kendrick</title>
     <meta name="description" content="{{ description }}" />
-    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}" />
+    <link rel="stylesheet" href="{{ request.scope.root_path or '' }}{{ url_for('static', path='styles.css').path }}" />
     {% block extra_head %}{% endblock %}
   </head>
   <body{% if body_class %} class="{{ body_class }}"{% endif %}>
@@ -38,6 +38,6 @@ cases; prefer the variables above.
 
     {% include "partials/footer.html" %}
 
-    <script src="{{ url_for('static', path='navigation.js') }}"></script>
+    <script src="{{ request.scope.root_path or '' }}{{ url_for('static', path='navigation.js').path }}"></script>
   </body>
 </html>

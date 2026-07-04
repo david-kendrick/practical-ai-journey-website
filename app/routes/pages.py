@@ -112,3 +112,57 @@ def manitobaCottageSearchCompat(request: Request) -> HTMLResponse:
     so the two routes produce identical HTML.
     """
     return _render_manitoba_cottage_search(request)
+
+
+# Student Assignment Tracker case-study page. Served at both
+# ``/student-assignment-tracker.html`` (primary, matching the existing
+# ``*.html`` nav hrefs used across the site) and the extensionless
+# ``/student-assignment-tracker`` alias allowed by the migration plan.
+# Both routes share one context so they cannot drift apart; the root static
+# ``student-assignment-tracker.html`` remains untouched until replacement
+# behavior is verified.
+STUDENT_ASSIGNMENT_TRACKER_CONTEXT = {
+    "title": "Student Assignment Tracker",
+    "description": (
+        "Case study for a Student Assignment Tracker: an education tracker "
+        "built with FastAPI, SQLite, HTMX, and an agent-assisted development "
+        "workflow."
+    ),
+    "active_page": "student-assignment-tracker",
+    "page_aria_label": "Student Assignment Tracker sections",
+    "page_sections": [
+        {"href": "#problem", "label": "Problem"},
+        {"href": "#build", "label": "Build"},
+        {"href": "#ai-workflow", "label": "AI workflow"},
+        {"href": "#agent-api", "label": "Agent API"},
+        {"href": "#takeaways", "label": "Takeaways"},
+    ],
+}
+
+
+def _render_student_assignment_tracker(request: Request) -> HTMLResponse:
+    """Render the Student Assignment Tracker template with the shared context."""
+    return templates.TemplateResponse(
+        request,
+        "pages/student-assignment-tracker.html",
+        STUDENT_ASSIGNMENT_TRACKER_CONTEXT,
+    )
+
+
+@router.get("/student-assignment-tracker.html", include_in_schema=True)
+def studentAssignmentTracker(request: Request) -> HTMLResponse:
+    """Primary Student Assignment Tracker case-study route (``*.html`` form)."""
+    return _render_student_assignment_tracker(request)
+
+
+@router.get("/student-assignment-tracker", include_in_schema=False)
+def studentAssignmentTrackerCompat(request: Request) -> HTMLResponse:
+    """Extensionless alias allowed by the migration plan.
+
+    Renders the exact same template/context as
+    ``/student-assignment-tracker.html`` so the two routes produce identical
+    HTML.
+    """
+    return _render_student_assignment_tracker(request)
+
+

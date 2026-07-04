@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+
+{% block main %}
+      <section id="top" class="hero appendix-hero section-shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Local models and benchmarking</p>
+          <h1 id="hero-title">What I learned running local models on Atlas</h1>
+          <p class="hero-lede">
+            I used an Apple Silicon Mac Mini as a practical local-model lab: comparing Ollama, raw MLX research,
+            and oMLX serving, then building a repeatable coding benchmark to measure speed, reliability, and the
+            real memory ceilings that shape what local AI can actually do.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="#benchmark-results">See benchmark results</a>
+            <a class="button secondary" href="index.html">Back to main page</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Local models summary">
+          <p class="panel-label">What mattered most</p>
+          <ul class="signal-list">
+            <li>
+              <strong>Serving path matters</strong>
+              <span>Ollama was the easy starting point, but oMLX became the most practical Hermes-serving route for 12B-class local work on Atlas.</span>
+            </li>
+            <li>
+              <strong>Benchmarks need discipline</strong>
+              <span>Unload behavior, deterministic tests, and repeated runs mattered more than one flashy output.</span>
+            </li>
+            <li>
+              <strong>Memory ceilings are real</strong>
+              <span>The Mac Mini's Metal cap shaped which models could be run fairly, regardless of model reputation.</span>
+            </li>
+          </ul>
+        </aside>
+      </section>
+
+      <section id="problem" class="section-shell narrative-section" aria-labelledby="problem-title">
+        <div class="section-heading narrow">
+          <p class="eyebrow">Why this work mattered</p>
+          <h2 id="problem-title">Local AI stops being abstract when the machine pushes back</h2>
+          <p>
+            I wanted to understand local models as working infrastructure, not as a vague privacy talking point.
+            That meant testing what actually ran on Atlas, how cleanly it integrated with Hermes, and where the
+            limits showed up in speed, memory pressure, and repeatability.
+          </p>
+        </div>
+
+        <div class="timeline-grid">
+          <article class="timeline-card">
+            <span class="timeline-step">Start</span>
+            <h3>Ollama as the practical baseline</h3>
+            <p>
+              Ollama was the easiest way to get useful local Gemma 4 runs on the Mac Mini. It worked as a clean
+              baseline for smoke testing and comparison, especially for smaller-model and fallback use.
+            </p>
+          </article>
+
+          <article class="timeline-card elevated">
+            <span class="timeline-step">Shift</span>
+            <h3>Researching MLX, then moving to oMLX</h3>
+            <p>
+              Raw MLX was promising but awkward for the specific Gemma 4 checkpoint shape I tested. oMLX mattered
+              because it exposed an OpenAI-compatible local API, which made the local serving path much more usable
+              through Hermes.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="atlas-setup" class="section-shell feature-section" aria-labelledby="atlas-title">
+        <div class="section-heading">
+          <p class="eyebrow">Atlas baseline</p>
+          <h2 id="atlas-title">The machine and setup I actually tested</h2>
+          <p>
+            The public value of this page is not “local AI is magic.” It is showing what was really tested, on what
+            hardware, and why the serving path changed over time.
+          </p>
+        </div>
+
+        <div class="feature-grid two-up">
+          <article class="feature-card">
+            <span>Hardware</span>
+            <h3>Apple Silicon Mac Mini</h3>
+            <p>
+              Atlas is an Apple M4 Mac Mini with 24GB unified memory and a 256GB SSD. That hardware was enough for
+              meaningful local experiments, but still small enough that memory ceilings and serving overhead mattered.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span>Serving evolution</span>
+            <h3>Ollama → MLX research → oMLX</h3>
+            <p>
+              Ollama handled the first useful runs. Raw MLX stayed in the research lane. oMLX became the first 12B
+              serving path that felt clean enough to use through Hermes as real workflow infrastructure.
+            </p>
+          </article>
+        </div>
+
+        <div class="table-card" aria-label="Atlas local model comparison table">
+          <table>
+            <thead>
+              <tr>
+                <th>Path</th>
+                <th>What I verified</th>
+                <th>What I learned</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ollama</td>
+                <td><code>gemma4:e4b</code> and <code>gemma4:12b-mlx</code> both ran successfully</td>
+                <td>Great baseline and fallback, but the 12B Ollama path was substantially slower on Atlas.</td>
+              </tr>
+              <tr>
+                <td>Raw MLX / MLX-LM</td>
+                <td>Installed and tested directly against a Gemma 4 checkpoint</td>
+                <td>Promising for Apple Silicon research, but not clean enough yet for the daily-serving lane I needed.</td>
+              </tr>
+              <tr>
+                <td>oMLX</td>
+                <td>Served a 12B Gemma 4 model through an OpenAI-compatible local API and worked through Hermes</td>
+                <td>The best practical integration shape for Atlas local serving so far.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="benchmark-results" class="section-shell feature-section" aria-labelledby="results-title">
+        <div class="section-heading">
+          <p class="eyebrow">Benchmark results</p>
+          <h2 id="results-title">A repeatable coding benchmark exposed the real tradeoffs</h2>
+          <p>
+            I built a local benchmark around a realistic Python scripting task and graded the generated code with a
+            deterministic four-test pytest suite. That made it possible to compare local models on something more
+            meaningful than a single subjective prompt.
+          </p>
+        </div>
+
+        <div class="table-card" aria-label="Local model benchmark summary table">
+          <table>
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Best observed result</th>
+                <th>Best observed time</th>
+                <th>What the result really means</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Qwen3.6-35B-A3B-RotorQuant-MLX-3bit</code></td>
+                <td>3/4 tests</td>
+                <td>62.03s</td>
+                <td>Fastest strong run I observed, but another run the same day failed completely with invalid Python.</td>
+              </tr>
+              <tr>
+                <td><code>gemma-4-12B-it-8bit</code></td>
+                <td>3/4 tests</td>
+                <td>239.09s</td>
+                <td>Much slower, but more conventional and easier to reason about; failed CSV complex-value encoding.</td>
+              </tr>
+              <tr>
+                <td><code>Ornith-1.0-9B-4bit</code></td>
+                <td>2/4 tests</td>
+                <td>147.88s</td>
+                <td>Faster than Gemma but materially weaker on parsing correctness and CSV behavior.</td>
+              </tr>
+              <tr>
+                <td><code>Qwen3.6-27B-MLX-4bit</code></td>
+                <td>0/4 tests</td>
+                <td>n/a</td>
+                <td>Could not be benchmarked fairly under the current Atlas Metal memory ceiling.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="feature-grid two-up">
+          <article class="feature-card">
+            <span>Speed vs. trust</span>
+            <h3>The fastest result was not automatically the best result</h3>
+            <p>
+              Qwen35 produced the fastest strong run, but it was not stable enough yet to call the benchmark solved.
+              That was one of the most useful lessons: local model evaluation needs repeated runs, not cherry-picked wins.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span>Why the benchmark mattered</span>
+            <h3>Correctness needed to be testable</h3>
+            <p>
+              The task required parsing, CLI behavior, serialization, and error handling. That made failures legible:
+              not just “this answer felt weak,” but exactly where the generated code broke down.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="constraints" class="section-shell feature-section" aria-labelledby="constraints-title">
+        <div class="section-heading">
+          <p class="eyebrow">Operational lessons</p>
+          <h2 id="constraints-title">The bottleneck was often systems behavior, not the model itself</h2>
+          <p>
+            The most transferable lesson from Atlas was that local AI work is constrained systems engineering. The
+            machine's memory behavior, serving process, and benchmark discipline mattered as much as the model name.
+          </p>
+        </div>
+
+        <div class="decision-flow" aria-label="Operational lessons from local benchmarking">
+          <article>
+            <span class="decision-step">01</span>
+            <strong>Unload between runs</strong>
+            <span>Without explicit unloads, later models inherited memory pressure and benchmark results became noisy.</span>
+          </article>
+          <article>
+            <span class="decision-step">02</span>
+            <strong>Disable wasted reasoning</strong>
+            <span>Qwen-family runs needed thinking disabled so output budget went to code instead of prose.</span>
+          </article>
+          <article>
+            <span class="decision-step">03</span>
+            <strong>Respect the Metal cap</strong>
+            <span>Atlas hit a 17.8GB ceiling that blocked fair 27B-class testing even when the model could partly load.</span>
+          </article>
+          <article>
+            <span class="decision-step">04</span>
+            <strong>Use real workloads</strong>
+            <span>Local cron jobs and deterministic tests taught more than toy demo prompts.</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="takeaways" class="section-shell closing-block" aria-labelledby="takeaways-title">
+        <div class="closing-copy">
+          <h2 id="takeaways-title">What this taught me about practical AI work</h2>
+          <div class="prose">
+            <p>
+              Running local models on Atlas made the tradeoffs concrete. Privacy and cost are real reasons to care
+              about local serving, but the more interesting lesson was architectural: the useful questions are about
+              serving shape, repeatability, memory ceilings, routing, and when a local model is actually good enough
+              for a specific job.
+            </p>
+            <p>
+              That is the angle I find professionally useful. Local AI is not just a novelty demo. It is a systems
+              problem with measurable tradeoffs, and solving it well looks a lot like other kinds of software and
+              infrastructure work.
+            </p>
+          </div>
+        </div>
+      </section>
+{% endblock %}

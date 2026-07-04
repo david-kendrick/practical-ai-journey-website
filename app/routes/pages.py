@@ -190,6 +190,25 @@ HERMES_WORKFLOW_CONTEXT = {
 }
 
 
+LOCAL_MODELS_BENCHMARKING_CONTEXT = {
+    "title": "Local Models and Benchmarking on Atlas",
+    "description": (
+        "Local models page describing David Kendrick's Atlas Mac Mini M4 "
+        "experiments with Ollama, MLX, oMLX, and a repeatable coding benchmark "
+        "for speed, reliability, and memory-ceiling tradeoffs."
+    ),
+    "active_page": "local-models-benchmarking",
+    "page_aria_label": "Local Models and Benchmarking sections",
+    "page_sections": [
+        {"href": "#problem", "label": "Why"},
+        {"href": "#atlas-setup", "label": "Atlas setup"},
+        {"href": "#benchmark-results", "label": "Results"},
+        {"href": "#constraints", "label": "Lessons"},
+        {"href": "#takeaways", "label": "Takeaways"},
+    ],
+}
+
+
 def _render_hermes_workflow(request: Request) -> HTMLResponse:
     """Render the Hermes Workflow template with the shared context."""
     return templates.TemplateResponse(
@@ -214,4 +233,29 @@ def hermesWorkflowCompat(request: Request) -> HTMLResponse:
     """
     return _render_hermes_workflow(request)
 
+
+def _render_local_models_benchmarking(request: Request) -> HTMLResponse:
+    """Render the Local Models and Benchmarking template with shared context."""
+    return templates.TemplateResponse(
+        request,
+        "pages/local-models-benchmarking.html",
+        LOCAL_MODELS_BENCHMARKING_CONTEXT,
+    )
+
+
+@router.get("/local-models-benchmarking.html", include_in_schema=True)
+def localModelsBenchmarking(request: Request) -> HTMLResponse:
+    """Primary Local Models and Benchmarking route (``*.html`` form)."""
+    return _render_local_models_benchmarking(request)
+
+
+@router.get("/local-models-benchmarking", include_in_schema=False)
+def localModelsBenchmarkingCompat(request: Request) -> HTMLResponse:
+    """Extensionless alias allowed by the migration plan.
+
+    Renders the exact same template/context as
+    ``/local-models-benchmarking.html`` so the two routes produce identical
+    HTML.
+    """
+    return _render_local_models_benchmarking(request)
 

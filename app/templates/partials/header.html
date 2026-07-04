@@ -2,17 +2,18 @@
 
 Expects from the rendering context:
   - active_page (required): one of "index", "manitoba-cottage-search",
-    "student-assignment-tracker", or "hermes-workflow". Marks the matching
-    primary-nav link with class="is-active".
+    "student-assignment-tracker", "hermes-workflow", or
+    "local-models-benchmarking". Marks the matching primary-nav link with
+    class="is-active".
   - page_sections (optional): list of {href, label} dicts for the desktop
     secondary nav and the mobile "This page" menu. Omit when a page has no
     in-page section nav.
   - page_aria_label (optional): aria-label for the secondary nav. Defaults to
     "Page sections".
 
-The four primary pages and their short labels are fixed here on purpose so
-every page renders the same nav row; only the active link and the per-page
-sections vary via context.
+The primary pages and their short labels are fixed here on purpose so every
+page renders the same nav row; only the active link and the per-page sections
+vary via context.
 #}
 {%- set primary_pages = [
       {"href": "index.html",
@@ -27,6 +28,9 @@ sections vary via context.
       {"href": "hermes-workflow.html",
        "label_full": "Agent Workflow",
        "label_short": "Workflow"},
+      {"href": "local-models-benchmarking.html",
+       "label_full": "Local Models",
+       "label_short": "Local Models"},
     ] -%}
 {%- set page_aria_label = page_aria_label | default("Page sections") -%}
 <header class="site-header">

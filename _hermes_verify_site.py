@@ -18,7 +18,7 @@ from fastapi.testclient import TestClient
 
 ROOT_PATH = "/projects/practical-ai-journey"
 
-PAGE_ROUTES = [
+ROOT_PATHS = [
     "/",
     "/index.html",
     "/manitoba-cottage-search.html",
@@ -27,6 +27,8 @@ PAGE_ROUTES = [
     "/student-assignment-tracker",
     "/hermes-workflow.html",
     "/hermes-workflow",
+    "/local-models-benchmarking.html",
+    "/local-models-benchmarking",
 ]
 
 STATIC_ROUTES = [
@@ -43,6 +45,8 @@ EXPECTED_PAGE_MARKERS = {
     "/student-assignment-tracker": ["Student Assignment Tracker"],
     "/hermes-workflow.html": ["How I Structured My AI Agent Workflow"],
     "/hermes-workflow": ["How I Structured My AI Agent Workflow"],
+    "/local-models-benchmarking.html": ["What I learned running local models on Atlas"],
+    "/local-models-benchmarking": ["What I learned running local models on Atlas"],
 }
 
 
@@ -105,7 +109,7 @@ def verify_mode(label: str, root_path: str | None) -> None:
             )
         print(f"[PASS] {label} /healthz")
 
-        for route in PAGE_ROUTES:
+        for route in ROOT_PATHS:
             response = assert_response(client, route)
             body = response.text
             for marker in EXPECTED_PAGE_MARKERS[route]:

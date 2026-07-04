@@ -53,6 +53,7 @@ def create_app() -> FastAPI:
         ),
         version="0.3.0",
         root_path=settings.root_path,
+        root_path_in_servers=False,
     )
 
     # Mount the static asset directory so Jinja templates can use

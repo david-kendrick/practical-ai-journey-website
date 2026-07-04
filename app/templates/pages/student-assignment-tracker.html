@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+
+{% block main %}
+      <section id="top" class="hero case-study-hero section-shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Case study</p>
+          <h1 id="hero-title">Student Assignment Tracker</h1>
+          <p class="hero-lede">
+            An education tracker built with FastAPI, SQLite, and HTMX through an agent-assisted development
+            workflow. It turned a real school-planning problem into a small product with clear entities,
+            mobile-first flows, and a planned agent access layer.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="#build">Review the build</a>
+            <a class="button secondary" href="index.html#examples">Back to examples</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel case-summary" aria-label="Case study summary">
+          <p class="panel-label">Project snapshot</p>
+          <dl class="snapshot-list">
+            <div>
+              <dt>Product</dt>
+              <dd>Mobile-first education tracker</dd>
+            </div>
+            <div>
+              <dt>Stack</dt>
+              <dd>FastAPI, SQLite, HTMX</dd>
+            </div>
+            <div>
+              <dt>AI role</dt>
+              <dd>Agent-assisted planning, implementation support, review, and iteration</dd>
+            </div>
+            <div>
+              <dt>Deployment</dt>
+              <dd>General web-app deployment path, with environment details intentionally kept private</dd>
+            </div>
+            <div>
+              <dt>Agent API</dt>
+              <dd>Designed and planned, not implemented</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="section-shell case-overview" aria-labelledby="overview-title">
+        <div class="section-heading narrow">
+          <h2 id="overview-title">Case study at a glance</h2>
+          <p>
+            The work is useful because it combines product thinking, technical modeling, and AI workflow design
+            without overstating what shipped.
+          </p>
+        </div>
+
+        <div class="overview-grid">
+          <article>
+            <span>Built</span>
+            <strong>Classes, assignments, semesters, schedules, grades</strong>
+            <p>A concrete domain model with real workflow logic, not a prompt-only demo.</p>
+          </article>
+          <article>
+            <span>Constrained</span>
+            <strong>Static description, private details omitted</strong>
+            <p>This page stays text-only and keeps deployment details general.</p>
+          </article>
+          <article>
+            <span>Learned</span>
+            <strong>Agents need structured interfaces</strong>
+            <p>The planned API layer separates human UI tasks from programmatic agent access.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="problem" class="section-shell narrative-section case-section" aria-labelledby="problem-title">
+        <div class="case-layout">
+          <div class="case-copy">
+            <h2 id="problem-title">A real workflow needed a real app</h2>
+            <p>
+              The product goal was straightforward: manage classes, schedules, assignments, semesters, and grades
+              in a phone-friendly education tracker. That required more than a list of tasks. It needed a data
+              model, predictable status behavior, and screens that matched how school work is actually reviewed.
+            </p>
+            <p>
+              The architecture question was just as important. If an agent will eventually help operate an app,
+              it should not depend on brittle screen scraping or direct database edits. It needs structured access
+              with validation, errors, and review boundaries.
+            </p>
+          </div>
+
+          <aside class="fact-card" aria-label="Core product model">
+            <p class="card-kicker">Core model</p>
+            <ul class="compact-list">
+              <li>Semesters with active-date logic</li>
+              <li>Classes connected to semesters</li>
+              <li>Assignments with due dates and status</li>
+              <li>Weekly schedule time slots</li>
+              <li>Grades and final marks</li>
+              <li>Overlap checks for semester dates</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="build" class="section-shell case-section" aria-labelledby="build-title">
+        <div class="section-heading narrow">
+          <h2 id="build-title">What shipped in the product layer</h2>
+          <p>
+            The application used FastAPI for server behavior, SQLite for persistence, and HTMX with vanilla
+            JavaScript for lightweight interaction. The stack kept the app understandable and easy to iterate.
+          </p>
+        </div>
+
+        <div class="feature-grid three-up case-feature-grid">
+          <article class="feature-card">
+            <span>Workflow</span>
+            <h3>Assignment tracking</h3>
+            <p>
+              Assignments connect to classes and due dates, with status and final marks treated as part of the
+              workflow rather than loose notes.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span>Structure</span>
+            <h3>Semester and class modeling</h3>
+            <p>
+              Classes belong to semesters and carry practical school context such as teacher, room, credits, and
+              schedule relationships.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span>Behavior</span>
+            <h3>Validation and active state</h3>
+            <p>
+              Rules such as active-semester detection and blocked overlapping semester dates keep app behavior
+              aligned with the domain model.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="ai-workflow" class="section-shell case-section" aria-labelledby="ai-title">
+        <div class="case-layout flipped">
+          <div class="case-copy">
+            <h2 id="ai-title">How the agent-assisted workflow helped</h2>
+            <p>
+              The useful AI pattern was not asking for isolated code snippets. It was using an agent-assisted
+              workflow to move from product need to data model, routes, UI behavior, tests, review, and follow-up
+              architecture decisions.
+            </p>
+            <p>
+              That process also made the limits clearer. AI can accelerate implementation and review, but the
+              app still needs explicit interfaces, predictable responses, safe write paths, and human judgment for
+              architectural claims.
+            </p>
+          </div>
+
+          <aside class="fact-card accent-card" aria-label="AI workflow lessons">
+            <p class="card-kicker">AI lessons</p>
+            <ul class="compact-list">
+              <li>Use agents to support planning and implementation, not replace review.</li>
+              <li>Expose structured application state instead of relying on UI scraping.</li>
+              <li>Design write boundaries before allowing agent-driven updates.</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="agent-api" class="section-shell case-section" aria-labelledby="agent-api-title">
+        <div class="section-heading narrow">
+          <h2 id="agent-api-title">Human UI and agent access need different interfaces</h2>
+          <p>
+            The next architectural step was a designed and planned agent-facing API layer. It was not implemented.
+            The design separated human screens from programmatic operations so that future agents would have a
+            safer path to read context, propose changes, and receive structured errors.
+          </p>
+        </div>
+
+        <div class="decision-flow case-flow" aria-label="Agent API design flow">
+          <article>
+            <span class="decision-step">Avoid</span>
+            <strong>Do not scrape the UI</strong>
+            <span>Agents should not depend on fragile page structure for core operations.</span>
+          </article>
+          <article>
+            <span class="decision-step">Protect</span>
+            <strong>Do not write the database directly</strong>
+            <span>Direct writes bypass validation, business rules, and useful error handling.</span>
+          </article>
+          <article>
+            <span class="decision-step">Design</span>
+            <strong>Expose structured endpoints</strong>
+            <span>A planned agent layer can provide JSON responses, search, context, and field-level updates.</span>
+          </article>
+          <article>
+            <span class="decision-step">Review</span>
+            <strong>Keep claims bounded</strong>
+            <span>Designed and planned does not mean implemented. Finished code earns stronger claims.</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="takeaways" class="section-shell closing-block" aria-labelledby="takeaways-title">
+        <div class="closing-copy">
+          <h2 id="takeaways-title">What this project demonstrates</h2>
+          <div class="prose">
+            <p>
+              The Student Assignment Tracker shows practical AI-assisted software work: translating a real
+              workflow into a web application, using a concrete stack, modeling domain entities, and identifying
+              where agent access changes the architecture.
+            </p>
+            <p>
+              The bigger lesson is that agent-enabled applications need to be designed as systems. Useful AI
+              integration depends on structured interfaces, clear data boundaries, predictable errors, and human
+              review, not just better prompts.
+            </p>
+          </div>
+        </div>
+      </section>
+{% endblock %}

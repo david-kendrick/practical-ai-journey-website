@@ -4,7 +4,7 @@ Local review draft for David Kendrick's first public-facing AI portfolio page.
 
 ## Run locally
 
-One-off local server:
+One-off static server:
 
 ```bash
 python3 -m http.server 4173
@@ -16,9 +16,45 @@ Open:
 http://127.0.0.1:4173/
 ```
 
-## Keep it up permanently on macOS
+## Run the FastAPI app locally
 
-A per-user launchd service now keeps the site running and restarts it automatically if it exits.
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+python -m uvicorn app.main:app --host 127.0.0.1 --port 8001
+```
+
+FastAPI pages available locally:
+
+- `http://127.0.0.1:8001/`
+- `http://127.0.0.1:8001/index.html`
+- `http://127.0.0.1:8001/manitoba-cottage-search.html`
+- `http://127.0.0.1:8001/student-assignment-tracker.html`
+- `http://127.0.0.1:8001/hermes-workflow.html`
+- `http://127.0.0.1:8001/healthz`
+
+## VPS subpath deployment shape
+
+When reverse-proxied on the VPS under `/projects/practical-ai-journey/`, run the
+app with:
+
+```bash
+PRACTICAL_AI_ROOT_PATH=/projects/practical-ai-journey \
+python -m uvicorn app.main:app --host 127.0.0.1 --port 8010
+```
+
+Use the nginx mounted-app pattern (rewrite + `X-Script-Name`) shown in:
+
+- `deploy/nginx-practical-ai-journey.conf`
+
+Systemd service template for the VPS user service lives at:
+
+- `deploy/practical-ai-journey.service`
+
+## Keep the old static preview up on macOS
+
+A per-user launchd service now keeps the original static preview server running and restarts it automatically if it exits.
 
 LaunchAgent plist:
 

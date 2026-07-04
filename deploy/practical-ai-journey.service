@@ -1,0 +1,14 @@
+[Unit]
+Description=Practical AI Journey Website FastAPI app
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/projects/practical-ai-journey
+Environment=PRACTICAL_AI_ROOT_PATH=/projects/practical-ai-journey
+ExecStart=/var/www/projects/practical-ai-journey/.venv/bin/python3.12 -m uvicorn app.main:app --host 127.0.0.1 --port 8010
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

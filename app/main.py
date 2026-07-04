@@ -28,10 +28,9 @@ from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
-from fastapi.staticfiles import StaticFiles
-
 from app.config import get_settings
 from app.routes import pages
+from app.staticfiles import RootPathAwareStaticFiles
 
 # Project root is two levels up from this file (app/main.py). The static/
 # directory at the repo root holds the working copies of styles.css and
@@ -61,7 +60,11 @@ def create_app() -> FastAPI:
     # exists from the scaffold slice; if missing, skip mounting rather than
     # fail import so the app is still usable in stripped-down envs.
     if _STATIC_DIR.is_dir():
-        app.mount("/static", StaticFiles(directory=str(_STATIC_DIR)), name="static")
+        app.mount(
+            "/static",
+            RootPathAwareStaticFiles(directory=str(_STATIC_DIR)),
+            name="static",
+        )
 
     @app.get("/healthz", include_in_schema=False)
     def healthz() -> JSONResponse:

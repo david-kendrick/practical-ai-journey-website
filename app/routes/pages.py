@@ -166,3 +166,52 @@ def studentAssignmentTrackerCompat(request: Request) -> HTMLResponse:
     return _render_student_assignment_tracker(request)
 
 
+# Hermes Workflow case-study page. Served at both ``/hermes-workflow.html``
+# (primary, matching the existing ``*.html`` nav hrefs used across the site)
+# and the extensionless ``/hermes-workflow`` alias allowed by the migration
+# plan. Both routes share one context so they cannot drift apart; the root
+# static ``hermes-workflow.html`` remains untouched until replacement behavior
+# is verified.
+HERMES_WORKFLOW_CONTEXT = {
+    "title": "How I Structured My AI Agent Workflow",
+    "description": (
+        "Agent workflow page describing how David Kendrick uses Hermes "
+        "profiles, memory, skills, model routing, and review gates to "
+        "structure practical AI work."
+    ),
+    "active_page": "hermes-workflow",
+    "page_aria_label": "Agent Workflow sections",
+    "page_sections": [
+        {"href": "#profiles", "label": "Profiles"},
+        {"href": "#memory-skills", "label": "Memory & skills"},
+        {"href": "#routing", "label": "Routing"},
+        {"href": "#takeaways", "label": "Takeaways"},
+    ],
+}
+
+
+def _render_hermes_workflow(request: Request) -> HTMLResponse:
+    """Render the Hermes Workflow template with the shared context."""
+    return templates.TemplateResponse(
+        request,
+        "pages/hermes-workflow.html",
+        HERMES_WORKFLOW_CONTEXT,
+    )
+
+
+@router.get("/hermes-workflow.html", include_in_schema=True)
+def hermesWorkflow(request: Request) -> HTMLResponse:
+    """Primary Hermes Workflow case-study route (``*.html`` form)."""
+    return _render_hermes_workflow(request)
+
+
+@router.get("/hermes-workflow", include_in_schema=False)
+def hermesWorkflowCompat(request: Request) -> HTMLResponse:
+    """Extensionless alias allowed by the migration plan.
+
+    Renders the exact same template/context as ``/hermes-workflow.html`` so
+    the two routes produce identical HTML.
+    """
+    return _render_hermes_workflow(request)
+
+

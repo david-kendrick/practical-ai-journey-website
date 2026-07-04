@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block main %}
+      <section id="top" class="hero appendix-hero section-shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Agent workflow</p>
+          <h1 id="hero-title">How I structured my AI agent workflow</h1>
+          <p class="hero-lede">
+            Hermes is where I started treating AI less like one chat box and more like a workflow system: profiles
+            for different roles, memory for durable context, skills for reusable procedures, and review gates for
+            judgment-sensitive work.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="#profiles">View profile map</a>
+            <a class="button secondary" href="index.html">Back to main page</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Agent workflow summary">
+          <p class="panel-label">Core idea</p>
+          <ul class="signal-list">
+            <li>
+              <strong>Separate the work</strong>
+              <span>Planning, design review, evidence gathering, coding, and local experiments belong in different lanes.</span>
+            </li>
+            <li>
+              <strong>Preserve context</strong>
+              <span>Memory and Obsidian notes keep decisions and project evidence from disappearing between sessions.</span>
+            </li>
+            <li>
+              <strong>Review before impact</strong>
+              <span>Public copy, automation, and external side effects need stronger review than first drafts.</span>
+            </li>
+          </ul>
+        </aside>
+      </section>
+
+      <section id="profiles" class="section-shell narrative-section" aria-labelledby="profiles-title">
+        <div class="section-heading narrow">
+          <p class="eyebrow">Profiles</p>
+          <h2 id="profiles-title">Profiles turn AI work into assigned roles</h2>
+          <p>
+            The most useful Hermes feature to explain publicly is profiles. They make the workflow legible:
+            different profiles are configured for different kinds of work instead of forcing every task through
+            the same model, prompt, and context.
+          </p>
+        </div>
+
+        <div class="profile-map" role="img" aria-label="Hermes workflow map: David or project need enters the default profile, then routes to orchestrator for planning and review, design for UI and UX critique, knowledge-worker for evidence gathering, and coding plus local lanes for implementation experiments.">
+          <div class="profile-spine" aria-hidden="true"></div>
+          <div class="profile-node request-node">
+            <span>Input</span>
+            <strong>David / project need</strong>
+            <p>Receives the task, chooses the lane, and keeps the work tied to project context.</p>
+          </div>
+          <div class="profile-node coordinator-node">
+            <span>Coordinator</span>
+            <strong>Default profile</strong>
+            <p>Receives the task, chooses the lane, and keeps the work tied to project context.</p>
+          </div>
+          <div class="profile-branches" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="profile-lanes">
+            <article class="profile-node lane-node">
+              <span>Planning + review</span>
+              <strong>orchestrator</strong>
+              <p>Decomposition, QA, final judgment, and review gates.</p>
+            </article>
+            <article class="profile-node lane-node">
+              <span>UI/UX critique</span>
+              <strong>design</strong>
+              <p>Design polish, layout critique, hierarchy, and accessibility review.</p>
+            </article>
+            <article class="profile-node lane-node">
+              <span>Evidence gathering</span>
+              <strong>knowledge-worker</strong>
+              <p>Lower-cost inventory building, source clustering, and research passes.</p>
+            </article>
+            <article class="profile-node lane-node">
+              <span>Coding / experiments</span>
+              <strong>coding + local lanes</strong>
+              <p>Implementation experiments, alternate hosted models, and local model serving tests.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="table-card" aria-label="Hermes profile summary table">
+          <table>
+            <thead>
+              <tr>
+                <th>Profile</th>
+                <th>Role in the workflow</th>
+                <th>Why it matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>orchestrator</code></td>
+                <td>Planning, decomposition, review, QA</td>
+                <td>Separates judgment and review from raw implementation.</td>
+              </tr>
+              <tr>
+                <td><code>design</code></td>
+                <td>UI/UX critique and polish</td>
+                <td>Gives interface work a dedicated review lane.</td>
+              </tr>
+              <tr>
+                <td><code>knowledge-worker</code></td>
+                <td>Evidence gathering and source inventory</td>
+                <td>Uses cheaper models where first-pass organization is enough.</td>
+              </tr>
+              <tr>
+                <td><code>omlx-test</code></td>
+                <td>Local model experiment</td>
+                <td>Explores privacy, cost, latency, and local serving constraints.</td>
+              </tr>
+              <tr>
+                <td><code>minimax-m3-coding</code></td>
+                <td>Coding-oriented experiment</td>
+                <td>Tests whether lower-cost coding lanes are useful for implementation work.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="memory-skills" class="section-shell feature-section" aria-labelledby="memory-title">
+        <div class="section-heading">
+          <p class="eyebrow">Memory + skills</p>
+          <h2 id="memory-title">Making AI work durable instead of disposable</h2>
+          <p>
+            The goal is continuity. I do not want every AI session to restart from scratch, and I do not want
+            repeated procedures to live only in prompt history.
+          </p>
+        </div>
+
+        <div class="feature-grid two-up">
+          <article class="feature-card">
+            <span>Memory</span>
+            <h3>Durable project context</h3>
+            <p>
+              Persistent memory and Obsidian-backed notes preserve decisions, source evidence, project
+              conventions, and review constraints across sessions. That turns AI from a one-off assistant into
+              a continuity layer for project work.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span>Skills</span>
+            <h3>Reusable procedures</h3>
+            <p>
+              Hermes skills act like workflow playbooks: project planning, debugging, browser automation,
+              deployment, testing discipline, and design review. When a pattern works, it can be captured and
+              reused instead of reinvented.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="routing" class="section-shell feature-section" aria-labelledby="routing-title">
+        <div class="section-heading">
+          <p class="eyebrow">Model routing + review</p>
+          <h2 id="routing-title">The right lane depends on the job</h2>
+          <p>
+            One of the biggest lessons has been that the answer is not always “use the strongest model.” The
+            right choice depends on cost, quality, privacy, risk, and whether the work needs reasoning at all.
+          </p>
+        </div>
+
+        <div class="decision-flow" aria-label="Model routing decision flow">
+          <article>
+            <span class="decision-step">01</span>
+            <strong>Does it need judgment?</strong>
+            <span>Use a stronger model and review gate.</span>
+          </article>
+          <article>
+            <span class="decision-step">02</span>
+            <strong>Is it evidence gathering?</strong>
+            <span>Use a cheaper model to collect and organize sources.</span>
+          </article>
+          <article>
+            <span class="decision-step">03</span>
+            <strong>Is it repetitive?</strong>
+            <span>Use deterministic scripts instead of an LLM.</span>
+          </article>
+          <article>
+            <span class="decision-step">04</span>
+            <strong>Does it need local constraints?</strong>
+            <span>Use a local model lane or guarded workflow.</span>
+          </article>
+        </div>
+
+        <div id="takeaways" class="callout-card">
+          <p class="eyebrow">Takeaway</p>
+          <h3>What this taught me</h3>
+          <p>
+            Enterprise AI is workflow design. Models matter, but so do state, review, logging, access control,
+            repeatable procedures, and knowing when not to use a model at all.
+          </p>
+        </div>
+      </section>
+{% endblock %}

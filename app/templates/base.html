@@ -1,0 +1,43 @@
+{# Shared document shell for the Practical AI Journey website.
+
+Page templates extend this and supply:
+  - title (required): page <title> text, without the "| David Kendrick" suffix.
+  - description (required): meta description content.
+  - active_page (required): one of "index", "manitoba-cottage-search",
+    "student-assignment-tracker", or "hermes-workflow".
+  - page_sections (optional): list of {href, label} dicts rendered as both the
+    desktop secondary nav and the mobile "This page" menu. Omit on pages that
+    have no secondary section nav.
+  - page_aria_label (optional): aria-label for the secondary nav, e.g.
+    "Manitoba Cottage Search sections". Defaults to "Page sections".
+  - body_class (optional): extra class for <body>.
+  - page_class (optional): extra class for <main>.
+
+Override {% block main %} to provide page content. Default blocks
+{% block extra_head %}, {% block extra_body_attr %} are available for niche
+cases; prefer the variables above.
+#}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title }} | David Kendrick</title>
+    <meta name="description" content="{{ description }}" />
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}" />
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body{% if body_class %} class="{{ body_class }}"{% endif %}>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    {% include "partials/header.html" %}
+
+    <main id="main"{% if page_class %} class="{{ page_class }}"{% endif %}>
+      {% block main %}{% endblock %}
+    </main>
+
+    {% include "partials/footer.html" %}
+
+    <script src="{{ url_for('static', path='navigation.js') }}"></script>
+  </body>
+</html>

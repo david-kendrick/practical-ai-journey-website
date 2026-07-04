@@ -1,0 +1,76 @@
+{# Shared site header.
+
+Expects from the rendering context:
+  - active_page (required): one of "index", "manitoba-cottage-search",
+    "student-assignment-tracker", or "hermes-workflow". Marks the matching
+    primary-nav link with class="is-active".
+  - page_sections (optional): list of {href, label} dicts for the desktop
+    secondary nav and the mobile "This page" menu. Omit when a page has no
+    in-page section nav.
+  - page_aria_label (optional): aria-label for the secondary nav. Defaults to
+    "Page sections".
+
+The four primary pages and their short labels are fixed here on purpose so
+every page renders the same nav row; only the active link and the per-page
+sections vary via context.
+#}
+{%- set primary_pages = [
+      {"href": "index.html",
+       "label_full": "Main page",
+       "label_short": "Home"},
+      {"href": "manitoba-cottage-search.html",
+       "label_full": "Manitoba Cottage Search",
+       "label_short": "Cottage Search"},
+      {"href": "student-assignment-tracker.html",
+       "label_full": "Student Assignment Tracker",
+       "label_short": "Assignment Tracker"},
+      {"href": "hermes-workflow.html",
+       "label_full": "Agent Workflow",
+       "label_short": "Workflow"},
+    ] -%}
+{%- set page_aria_label = page_aria_label | default("Page sections") -%}
+<header class="site-header">
+  <div class="header-shell">
+    <nav class="nav-row primary-nav" aria-label="Site pages">
+      <a class="brand" href="index.html#top" aria-label="David Kendrick portfolio home">
+        <span>David Kendrick</span>
+      </a>
+      <div class="primary-links">
+        {%- for item in primary_pages %}
+        <a{% if active_page and (item.href == active_page or (active_page ~ ".html") == item.href) %} class="is-active"{% endif %} href="{{ item.href }}"><span class="label-full">{{ item.label_full }}</span><span class="label-short">{{ item.label_short }}</span></a>
+        {%- endfor %}
+      </div>
+      <details class="mobile-menu">
+        <summary aria-label="Open navigation menu">
+          <span>Menu</span>
+        </summary>
+        <div class="mobile-menu-panel">
+          <nav aria-label="Site pages">
+            <p class="mobile-menu-label">Pages</p>
+            {%- for item in primary_pages %}
+            {%- set short_label = item.label_short if item.href != "index.html" else "Home" %}
+            <a href="{{ item.href }}">{{ short_label }}</a>
+            {%- endfor %}
+          </nav>
+          {% if page_sections %}
+          <nav aria-label="Page sections">
+            <p class="mobile-menu-label">This page</p>
+            {%- for section in page_sections %}
+            <a href="{{ section.href }}">{{ section.label }}</a>
+            {%- endfor %}
+          </nav>
+          {% endif %}
+        </div>
+      </details>
+    </nav>
+    {% if page_sections %}
+    <nav class="nav-row secondary-nav" aria-label="{{ page_aria_label }}">
+      <div class="secondary-links">
+        {%- for section in page_sections %}
+        <a href="{{ section.href }}">{{ section.label }}</a>
+        {%- endfor %}
+      </div>
+    </nav>
+    {% endif %}
+  </div>
+</header>

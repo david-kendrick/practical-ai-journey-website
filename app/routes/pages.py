@@ -62,3 +62,53 @@ def homeCompat(request: Request) -> HTMLResponse:
     produce identical HTML; verified by the acceptance smoke checks.
     """
     return _render_homepage(request)
+
+
+# Manitoba Cottage Search case-study page. Served at both
+# ``/manitoba-cottage-search.html`` (primary, matching the existing ``*.html``
+# nav hrefs used across the site) and the extensionless
+# ``/manitoba-cottage-search`` alias allowed by the migration plan. Both routes
+# share one context so they cannot drift apart; the root static
+# ``manitoba-cottage-search.html`` remains untouched until replacement
+# behavior is verified.
+MANITOBA_COTTAGE_SEARCH_CONTEXT = {
+    "title": "Manitoba Cottage Search",
+    "description": (
+        "Case study for Manitoba Cottage Search: a FastAPI and HTMX "
+        "listing-review app with structured intake, browser-backed "
+        "extraction, and agent-assisted workflow design."
+    ),
+    "active_page": "manitoba-cottage-search",
+    "page_aria_label": "Manitoba Cottage Search sections",
+    "page_sections": [
+        {"href": "#problem", "label": "Problem"},
+        {"href": "#architecture", "label": "Architecture"},
+        {"href": "#ai-role", "label": "AI role"},
+        {"href": "#lessons", "label": "Lessons"},
+    ],
+}
+
+
+def _render_manitoba_cottage_search(request: Request) -> HTMLResponse:
+    """Render the Manitoba Cottage Search template with the shared context."""
+    return templates.TemplateResponse(
+        request,
+        "pages/manitoba-cottage-search.html",
+        MANITOBA_COTTAGE_SEARCH_CONTEXT,
+    )
+
+
+@router.get("/manitoba-cottage-search.html", include_in_schema=True)
+def manitobaCottageSearch(request: Request) -> HTMLResponse:
+    """Primary Manitoba Cottage Search case-study route (``*.html`` form)."""
+    return _render_manitoba_cottage_search(request)
+
+
+@router.get("/manitoba-cottage-search", include_in_schema=False)
+def manitobaCottageSearchCompat(request: Request) -> HTMLResponse:
+    """Extensionless alias allowed by the migration plan.
+
+    Renders the exact same template/context as ``/manitoba-cottage-search.html``
+    so the two routes produce identical HTML.
+    """
+    return _render_manitoba_cottage_search(request)

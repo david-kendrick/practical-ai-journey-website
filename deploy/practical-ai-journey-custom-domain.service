@@ -1,0 +1,29 @@
+[Unit]
+Description=Practical AI Journey Website FastAPI app (custom domain root)
+After=network.target
+
+# This unit runs a SECOND uvicorn process for the custom-domain cutover.
+# It is intentionally separate from practical-ai-journey.service (which
+# continues to serve the existing /projects/practical-ai-journey subpath
+# on 127.0.0.1:8010). Keeping the two processes independent means the
+# known-good subpath deployment stays online as a fallback while the new
+# domain-root route is validated, and rollback is just stopping this
+# unit + disabling the matching nginx server block.
+#
+# Do NOT enable this unit until David confirms the final public domain
+# and the dual-instance decision.
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/projects/practical-ai-journey
+# PRACTICAL_AI_ROOT_PATH is intentionally unset/empty so the app mounts
+# at the domain root instead of under /projects/practical-ai-journey.
+# app.config._normalize_root_path collapses "" or "/" to an empty
+# root_path, which makes url_for('static', ...) emit /static/... .
+Environment=PRACTICAL_AI_ROOT_PATH=
+ExecStart=/var/www/projects/practical-ai-journey/.venv/bin/python3.12 -m uvicorn app.main:app --host 127.0.0.1 --port 8011
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

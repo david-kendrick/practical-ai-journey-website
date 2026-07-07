@@ -16,9 +16,6 @@ page renders the same nav row; only the active link and the per-page sections
 vary via context.
 #}
 {%- set primary_pages = [
-      {"href": "index.html",
-       "label_full": "Main page",
-       "label_short": "Home"},
       {"href": "manitoba-cottage-search.html",
        "label_full": "Manitoba Cottage Search",
        "label_short": "Cottage Search"},
@@ -52,8 +49,7 @@ vary via context.
           <nav aria-label="Site pages">
             <p class="mobile-menu-label">Pages</p>
             {%- for item in primary_pages %}
-            {%- set short_label = item.label_short if item.href != "index.html" else "Home" %}
-            <a href="{{ item.href }}">{{ short_label }}</a>
+            <a href="{{ item.href }}">{{ item.label_short }}</a>
             {%- endfor %}
           </nav>
           {% if page_sections %}

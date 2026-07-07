@@ -68,9 +68,7 @@ def homeCompat(request: Request) -> HTMLResponse:
 # ``/manitoba-cottage-search.html`` (primary, matching the existing ``*.html``
 # nav hrefs used across the site) and the extensionless
 # ``/manitoba-cottage-search`` alias allowed by the migration plan. Both routes
-# share one context so they cannot drift apart; the root static
-# ``manitoba-cottage-search.html`` remains untouched until replacement
-# behavior is verified.
+# share one context so they cannot drift apart.
 MANITOBA_COTTAGE_SEARCH_CONTEXT = {
     "title": "Manitoba Cottage Search",
     "description": (
@@ -118,9 +116,7 @@ def manitobaCottageSearchCompat(request: Request) -> HTMLResponse:
 # ``/student-assignment-tracker.html`` (primary, matching the existing
 # ``*.html`` nav hrefs used across the site) and the extensionless
 # ``/student-assignment-tracker`` alias allowed by the migration plan.
-# Both routes share one context so they cannot drift apart; the root static
-# ``student-assignment-tracker.html`` remains untouched until replacement
-# behavior is verified.
+# Both routes share one context so they cannot drift apart.
 STUDENT_ASSIGNMENT_TRACKER_CONTEXT = {
     "title": "Student Assignment Tracker",
     "description": (
@@ -169,9 +165,7 @@ def studentAssignmentTrackerCompat(request: Request) -> HTMLResponse:
 # Hermes Workflow case-study page. Served at both ``/hermes-workflow.html``
 # (primary, matching the existing ``*.html`` nav hrefs used across the site)
 # and the extensionless ``/hermes-workflow`` alias allowed by the migration
-# plan. Both routes share one context so they cannot drift apart; the root
-# static ``hermes-workflow.html`` remains untouched until replacement behavior
-# is verified.
+# plan. Both routes share one context so they cannot drift apart.
 HERMES_WORKFLOW_CONTEXT = {
     "title": "How I Structured My AI Agent Workflow",
     "description": (

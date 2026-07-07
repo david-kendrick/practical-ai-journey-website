@@ -33,9 +33,9 @@ from app.routes import pages
 from app.staticfiles import RootPathAwareStaticFiles
 
 # Project root is two levels up from this file (app/main.py). The static/
-# directory at the repo root holds the working copies of styles.css and
-# navigation.js; root-level styles.css/navigation.js and the root HTML
-# pages are left untouched and stay the live static site.
+# directory at the repo root holds the live asset copies mounted at /static.
+# Root-level legacy HTML/CSS/JS files are rollback/reference artifacts and are
+# not part of the FastAPI-rendered site.
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 _STATIC_DIR = _PROJECT_ROOT / "static"
 

@@ -84,18 +84,14 @@ Systemd service template for the VPS user service lives at:
 
 - `deploy/practical-ai-journey.service`
 
-## Static fallback artifacts
+## Legacy static cleanup
 
-Root-level legacy static files remain in the repo as rollback/reference artifacts until the custom-domain cutover is stable:
+The old root-level static fallback files have been removed. The FastAPI app is
+the only supported website shape now:
 
-- `index.html`
-- `manitoba-cottage-search.html`
-- `student-assignment-tracker.html`
-- `hermes-workflow.html`
-- `styles.css`
-- `navigation.js`
-
-Do not treat the old static preview as the primary app anymore; the FastAPI app is the current deployment shape.
+- page templates live under `app/templates/pages/`
+- shared layout lives under `app/templates/base.html` and `app/templates/partials/`
+- live assets live under `static/`
 
 ## Source evidence
 

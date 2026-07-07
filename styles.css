@@ -89,7 +89,30 @@ body::before {
 .brand,
 .primary-nav a,
 .secondary-nav a { color: var(--text); text-decoration: none; }
-.brand { display: grid; gap: 1px; flex: 0 0 auto; font-weight: 850; letter-spacing: -0.02em; font-size: 20px; }
+.brand {
+  display: grid;
+  gap: 1px;
+  flex: 0 0 auto;
+  padding: 0.4rem 0.95rem;
+  border-radius: 0.5rem;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  font-size: 20px;
+  transition: background 220ms ease;
+}
+.brand:hover,
+.brand:focus-visible {
+  background: radial-gradient(
+    120% 220% at 50% 50%,
+    rgba(56, 189, 248, 0.30) 0%,
+    rgba(56, 189, 248, 0.18) 45%,
+    rgba(56, 189, 248, 0.00) 78%
+  );
+}
+.brand:focus-visible {
+  outline: 2px solid rgba(125, 211, 252, 0.65);
+  outline-offset: 2px;
+}
 .brand small { color: var(--subtle); font-size: 0.76rem; font-weight: 650; letter-spacing: 0.01em; }
 .label-short { display: none; }
 .mobile-menu { display: none; }
@@ -712,6 +735,9 @@ code { color: var(--accent); font-family: "SFMono-Regular", Consolas, "Liberatio
   *,
   *::before,
   *::after { scroll-behavior: auto !important; transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+  .brand {
+    transition: none !important;
+  }
 }
 
 @media (max-width: 420px) {

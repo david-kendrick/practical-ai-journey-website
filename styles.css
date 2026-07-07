@@ -89,7 +89,22 @@ body::before {
 .brand,
 .primary-nav a,
 .secondary-nav a { color: var(--text); text-decoration: none; }
-.brand { display: grid; gap: 1px; flex: 0 0 auto; font-weight: 850; letter-spacing: -0.02em; font-size: 20px; }
+.brand {
+  display: grid;
+  gap: 1px;
+  flex: 0 0 auto;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  font-size: 20px;
+  transition: background 200ms ease, box-shadow 200ms ease;
+}
+.brand:hover,
+.brand:focus-visible {
+  background: radial-gradient(circle at center, rgba(99, 102, 241, 0.35), rgba(99, 102, 241, 0) 70%);
+  box-shadow: 0 0 20px 4px rgba(99, 102, 241, 0.45);
+}
 .brand small { color: var(--subtle); font-size: 0.76rem; font-weight: 650; letter-spacing: 0.01em; }
 .label-short { display: none; }
 .mobile-menu { display: none; }
@@ -712,6 +727,9 @@ code { color: var(--accent); font-family: "SFMono-Regular", Consolas, "Liberatio
   *,
   *::before,
   *::after { scroll-behavior: auto !important; transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+  .brand {
+    transition: none !important;
+  }
 }
 
 @media (max-width: 420px) {

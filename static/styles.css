@@ -228,9 +228,21 @@ main,
   background: rgba(125, 211, 252, 0.11);
 }
 
-.secondary-links a { color: var(--muted); }
+.secondary-links a {
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--muted);
+  transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
 .secondary-links a:hover,
 .secondary-links a:focus-visible { color: var(--accent); }
+.secondary-links a.is-active,
+.secondary-links a[aria-current="true"] {
+  color: var(--text);
+  border-color: rgba(125, 211, 252, 0.28);
+  background: rgba(125, 211, 252, 0.08);
+}
 :focus-visible { outline: 3px solid rgba(125, 211, 252, 0.65); outline-offset: 4px; }
 .section-shell { width: min(var(--page-width), calc(100% - 40px)); margin: 0 auto; padding: clamp(64px, 9vw, 104px) 0; scroll-margin-top: 132px; }
 .hero {
@@ -774,7 +786,9 @@ code { color: var(--accent); font-family: "SFMono-Regular", Consolas, "Liberatio
     text-decoration: none;
   }
   .mobile-menu-panel a:hover,
-  .mobile-menu-panel a:focus-visible {
+  .mobile-menu-panel a:focus-visible,
+  .mobile-menu-panel a.is-active,
+  .mobile-menu-panel a[aria-current="true"] {
     color: var(--text);
     border-color: rgba(125, 211, 252, 0.34);
     background: rgba(125, 211, 252, 0.1);

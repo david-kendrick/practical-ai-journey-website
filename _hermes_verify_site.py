@@ -45,8 +45,8 @@ EXPECTED_PAGE_MARKERS = {
     "/student-assignment-tracker": ["Student Assignment Tracker"],
     "/hermes-workflow.html": ["How I Structured My AI Agent Workflow"],
     "/hermes-workflow": ["How I Structured My AI Agent Workflow"],
-    "/local-models-benchmarking.html": ["What I learned running local models on Atlas"],
-    "/local-models-benchmarking": ["What I learned running local models on Atlas"],
+    "/local-models-benchmarking.html": ["What I learned running local models on a Mac Mini"],
+    "/local-models-benchmarking": ["What I learned running local models on a Mac Mini"],
 }
 
 

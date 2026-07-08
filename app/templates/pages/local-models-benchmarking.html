@@ -4,7 +4,7 @@
       <section id="top" class="hero appendix-hero section-shell" aria-labelledby="hero-title">
         <div class="hero-copy">
           <p class="eyebrow">Local models and benchmarking</p>
-          <h1 id="hero-title">What I learned running local models on Atlas</h1>
+          <h1 id="hero-title">What I learned running local models on a Mac Mini</h1>
           <p class="hero-lede">
             I used an Apple Silicon Mac Mini as a practical local-model lab: comparing Ollama, raw MLX research,
             and oMLX serving, then building a repeatable coding benchmark to measure speed, reliability, and the
@@ -12,7 +12,7 @@
           </p>
           <div class="hero-actions" aria-label="Primary actions">
             <a class="button primary" href="#benchmark-results">See benchmark results</a>
-            <a class="button secondary" href="index.html">Back to main page</a>
+            <a class="button secondary" href="index.html#examples">Back to examples</a>
           </div>
         </div>
 
@@ -21,7 +21,7 @@
           <ul class="signal-list">
             <li>
               <strong>Serving path matters</strong>
-              <span>Ollama was the easy starting point, but oMLX became the most practical Hermes-serving route for 12B-class local work on Atlas.</span>
+              <span>Ollama was the easy starting point, but oMLX became the most practical Hermes-serving route for 12B-class local work on a Mac Mini.</span>
             </li>
             <li>
               <strong>Benchmarks need discipline</strong>
@@ -41,7 +41,7 @@
           <h2 id="problem-title">Local AI stops being abstract when the machine pushes back</h2>
           <p>
             I wanted to understand local models as working infrastructure, not as a vague privacy talking point.
-            That meant testing what actually ran on Atlas, how cleanly it integrated with Hermes, and where the
+            That meant testing what actually ran on a Mac Mini, how cleanly it integrated with Hermes, and where the
             limits showed up in speed, memory pressure, and repeatability.
           </p>
         </div>
@@ -70,7 +70,7 @@
 
       <section id="atlas-setup" class="section-shell feature-section" aria-labelledby="atlas-title">
         <div class="section-heading">
-          <p class="eyebrow">Atlas baseline</p>
+          <p class="eyebrow">Mac Mini baseline</p>
           <h2 id="atlas-title">The machine and setup I actually tested</h2>
           <p>
             The public value of this page is not “local AI is magic.” It is showing what was really tested, on what
@@ -83,7 +83,7 @@
             <span>Hardware</span>
             <h3>Apple Silicon Mac Mini</h3>
             <p>
-              Atlas is an Apple M4 Mac Mini with 24GB unified memory and a 256GB SSD. That hardware was enough for
+              The test machine is an Apple M4 Mac Mini with 24GB unified memory and a 256GB SSD. That hardware was enough for
               meaningful local experiments, but still small enough that memory ceilings and serving overhead mattered.
             </p>
           </article>
@@ -97,7 +97,7 @@
           </article>
         </div>
 
-        <div class="table-card" aria-label="Atlas local model comparison table">
+        <div class="table-card" aria-label="Mac Mini local model comparison table">
           <table>
             <thead>
               <tr>
@@ -110,7 +110,7 @@
               <tr>
                 <td>Ollama</td>
                 <td><code>gemma4:e4b</code> and <code>gemma4:12b-mlx</code> both ran successfully</td>
-                <td>Great baseline and fallback, but the 12B Ollama path was substantially slower on Atlas.</td>
+                <td>Great baseline and fallback, but the 12B Ollama path was substantially slower on the Mac Mini.</td>
               </tr>
               <tr>
                 <td>Raw MLX / MLX-LM</td>
@@ -120,7 +120,7 @@
               <tr>
                 <td>oMLX</td>
                 <td>Served a 12B Gemma 4 model through an OpenAI-compatible local API and worked through Hermes</td>
-                <td>The best practical integration shape for Atlas local serving so far.</td>
+                <td>The best practical integration shape for this Mac Mini local serving setup so far.</td>
               </tr>
             </tbody>
           </table>
@@ -138,7 +138,7 @@
           </p>
         </div>
 
-        <div class="table-card" aria-label="Local model benchmark summary table">
+        <div class="table-card benchmark-table" aria-label="Local model benchmark summary table">
           <table>
             <thead>
               <tr>
@@ -171,7 +171,7 @@
                 <td><code>Qwen3.6-27B-MLX-4bit</code></td>
                 <td>0/4 tests</td>
                 <td>n/a</td>
-                <td>Could not be benchmarked fairly under the current Atlas Metal memory ceiling.</td>
+                <td>Could not be benchmarked fairly under the current Mac Mini Metal memory ceiling.</td>
               </tr>
             </tbody>
           </table>
@@ -202,7 +202,7 @@
           <p class="eyebrow">Operational lessons</p>
           <h2 id="constraints-title">The bottleneck was often systems behavior, not the model itself</h2>
           <p>
-            The most transferable lesson from Atlas was that local AI work is constrained systems engineering. The
+            The most transferable lesson from this Mac Mini setup was that local AI work is constrained systems engineering. The
             machine's memory behavior, serving process, and benchmark discipline mattered as much as the model name.
           </p>
         </div>
@@ -221,7 +221,7 @@
           <article>
             <span class="decision-step">03</span>
             <strong>Respect the Metal cap</strong>
-            <span>Atlas hit a 17.8GB ceiling that blocked fair 27B-class testing even when the model could partly load.</span>
+            <span>The Mac Mini hit a 17.8GB ceiling that blocked fair 27B-class testing even when the model could partly load.</span>
           </article>
           <article>
             <span class="decision-step">04</span>
@@ -236,7 +236,7 @@
           <h2 id="takeaways-title">What this taught me about practical AI work</h2>
           <div class="prose">
             <p>
-              Running local models on Atlas made the tradeoffs concrete. Privacy and cost are real reasons to care
+              Running local models on a Mac Mini made the tradeoffs concrete. Privacy and cost are real reasons to care
               about local serving, but the more interesting lesson was architectural: the useful questions are about
               serving shape, repeatability, memory ceilings, routing, and when a local model is actually good enough
               for a specific job.

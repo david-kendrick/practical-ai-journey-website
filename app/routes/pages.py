@@ -191,9 +191,9 @@ HERMES_WORKFLOW_CONTEXT = {
 
 
 LOCAL_MODELS_BENCHMARKING_CONTEXT = {
-    "title": "Local Models and Benchmarking on Atlas",
+    "title": "Local Models and Benchmarking on a Mac Mini",
     "description": (
-        "Local models page describing David Kendrick's Atlas Mac Mini M4 "
+        "Local models page describing David Kendrick's Mac Mini M4 "
         "experiments with Ollama, MLX, oMLX, and a repeatable coding benchmark "
         "for speed, reliability, and memory-ceiling tradeoffs."
     ),
@@ -201,7 +201,7 @@ LOCAL_MODELS_BENCHMARKING_CONTEXT = {
     "page_aria_label": "Local Models and Benchmarking sections",
     "page_sections": [
         {"href": "#problem", "label": "Why"},
-        {"href": "#atlas-setup", "label": "Atlas setup"},
+        {"href": "#atlas-setup", "label": "Mac Mini setup"},
         {"href": "#benchmark-results", "label": "Results"},
         {"href": "#constraints", "label": "Lessons"},
         {"href": "#takeaways", "label": "Takeaways"},

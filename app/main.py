@@ -1,12 +1,9 @@
 """FastAPI app for the Practical AI Journey website.
 
-Page content is migrating from the static root HTML files onto Jinja2
-templates under ``app/templates/``. The homepage is the first migrated
-page and is served by ``app.routes.pages`` at both ``/`` and
-``/index.html`` so existing ``*.html`` nav hrefs keep working. All public
-portfolio pages now render through FastAPI/Jinja, while root-level static
-HTML files remain in the repo as rollback/reference artifacts during the
-deployment-shape migration.
+Public pages render through Jinja2 templates under ``app/templates/`` and
+are served by ``app.routes.pages``. ``*.html`` compatibility routes remain
+for stable public URLs, but the old root-level static HTML/CSS/JS artifacts
+were removed after the custom-domain cutover completed.
 
 Runtime mount configuration:
 - set ``PRACTICAL_AI_ROOT_PATH=/projects/practical-ai-journey`` when the app
@@ -19,7 +16,7 @@ Run locally with::
     python -m venv .venv
     . .venv/bin/activate
     pip install -r requirements.txt
-    python -m uvicorn app.main:app --host 127.0.0.1 --port 8001
+    python -m uvicorn app.main:app --host 127.0.0.1 --port 4173
 """
 
 from __future__ import annotations
@@ -33,9 +30,9 @@ from app.routes import pages
 from app.staticfiles import RootPathAwareStaticFiles
 
 # Project root is two levels up from this file (app/main.py). The static/
-# directory at the repo root holds the working copies of styles.css and
-# navigation.js; root-level styles.css/navigation.js and the root HTML
-# pages are left untouched and stay the live static site.
+# directory at the repo root holds the live FastAPI-served asset copies of
+# styles.css and navigation.js. Root-level static-era HTML/CSS/JS artifacts
+# were removed after the custom-domain cutover completed.
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 _STATIC_DIR = _PROJECT_ROOT / "static"
 

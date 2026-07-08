@@ -1,6 +1,8 @@
-# Practical AI Journey Draft
+# Practical AI Journey Website
 
 FastAPI/Jinja portfolio site for David Kendrick's Practical AI Journey pages.
+
+Canonical live URL: `https://davidkendrick.dev/`
 
 ## Requirements
 
@@ -15,52 +17,56 @@ The runtime/test-client dependency versions are pinned in `requirements.txt` so 
 python3.12 -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt
-python -m uvicorn app.main:app --host 127.0.0.1 --port 8001
+python -m uvicorn app.main:app --host 127.0.0.1 --port 4173
 ```
 
 Open:
 
 ```text
-http://127.0.0.1:8001/
+http://127.0.0.1:4173/
 ```
 
 FastAPI pages available locally:
 
-- `http://127.0.0.1:8001/`
-- `http://127.0.0.1:8001/index.html`
-- `http://127.0.0.1:8001/manitoba-cottage-search.html`
-- `http://127.0.0.1:8001/manitoba-cottage-search`
-- `http://127.0.0.1:8001/student-assignment-tracker.html`
-- `http://127.0.0.1:8001/student-assignment-tracker`
-- `http://127.0.0.1:8001/hermes-workflow.html`
-- `http://127.0.0.1:8001/hermes-workflow`
-- `http://127.0.0.1:8001/healthz`
+- `http://127.0.0.1:4173/`
+- `http://127.0.0.1:4173/index.html`
+- `http://127.0.0.1:4173/manitoba-cottage-search.html`
+- `http://127.0.0.1:4173/manitoba-cottage-search`
+- `http://127.0.0.1:4173/student-assignment-tracker.html`
+- `http://127.0.0.1:4173/student-assignment-tracker`
+- `http://127.0.0.1:4173/hermes-workflow.html`
+- `http://127.0.0.1:4173/hermes-workflow`
+- `http://127.0.0.1:4173/local-models-benchmarking.html`
+- `http://127.0.0.1:4173/local-models-benchmarking`
+- `http://127.0.0.1:4173/healthz`
+
+## Source of truth
+
+The site is FastAPI/Jinja. Edit these files for site changes:
+
+- page templates: `app/templates/pages/*.html`
+- shared layout/partials: `app/templates/base.html`, `app/templates/partials/*.html`
+- live assets: `static/styles.css`, `static/navigation.js`
+- routes: `app/routes/pages.py`
+
+Do not recreate root-level static HTML files, root `styles.css`, or root `navigation.js`. Those static-era artifacts were removed after the custom-domain cutover was completed.
 
 ## Local verification
 
-Current smoke checks:
+Current smoke check:
 
 ```bash
-python _hermes_verify_manitoba_page.py
-python _hermes_verify_student_assignment_tracker_page.py
-python _hermes_verify_hermes_workflow_page.py
-python _hermes_verify_subpath_root_path.py
+python _hermes_verify_site.py
 ```
 
-The subpath check verifies the app under:
+The smoke check verifies root mode, VPS subpath mode, public page routes, extensionless aliases, static assets, and `/healthz`.
+
+## VPS deployment shape
+
+Current canonical host:
 
 ```text
-/projects/practical-ai-journey
-```
-
-matching the current VPS mount path.
-
-## VPS subpath deployment shape
-
-Current live URL:
-
-```text
-http://142.93.152.29/projects/practical-ai-journey/
+https://davidkendrick.dev/
 ```
 
 VPS checkout:
@@ -69,39 +75,30 @@ VPS checkout:
 /var/www/projects/practical-ai-journey
 ```
 
-When reverse-proxied on the VPS under `/projects/practical-ai-journey/`, run the app with:
+The canonical domain-root app runs on loopback with no public root path:
 
 ```bash
-PRACTICAL_AI_ROOT_PATH=/projects/practical-ai-journey \
-python -m uvicorn app.main:app --host 127.0.0.1 --port 8010
+PRACTICAL_AI_ROOT_PATH= python -m uvicorn app.main:app --host 127.0.0.1 --port 8011
 ```
 
-Use the nginx mounted-app pattern (rewrite + `X-Script-Name`) shown in:
+Deployment templates:
 
-- `deploy/nginx-practical-ai-journey.conf`
+- `deploy/practical-ai-journey-custom-domain.service`
+- `deploy/nginx-practical-ai-journey-custom-domain.conf`
 
-Systemd service template for the VPS user service lives at:
+The old `/projects/practical-ai-journey/` subpath service/config may still exist as an operational fallback, but it is not the canonical public surface.
 
-- `deploy/practical-ai-journey.service`
+## Documentation
 
-## Static fallback artifacts
+Project planning, deployment history, cutover records, and archived static-era notes live in Obsidian under:
 
-Root-level legacy static files remain in the repo as rollback/reference artifacts until the custom-domain cutover is stable:
-
-- `index.html`
-- `manitoba-cottage-search.html`
-- `student-assignment-tracker.html`
-- `hermes-workflow.html`
-- `styles.css`
-- `navigation.js`
-
-Do not treat the old static preview as the primary app anymore; the FastAPI app is the current deployment shape.
+```text
+/Users/david/Obsidian Vault/Projects/Practical AI Journey Website/
+```
 
 ## Source evidence
 
-Draft copy is based on:
+Draft copy is based on Obsidian notes, especially:
 
 - `/Users/david/Obsidian Vault/Agent-Hermes/projects/ai-career-prep/project-evidence-review.md`
 - `/Users/david/Obsidian Vault/Agent-Hermes/projects/ai-career-prep/practical-ai-journey-draft.md`
-
-This is review copy, not final public copy.

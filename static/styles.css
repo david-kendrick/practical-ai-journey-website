@@ -34,6 +34,79 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+.site-orb-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.site-orb-background::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  content: "";
+  background: rgba(3, 11, 20, 0.18);
+}
+.site-orb {
+  position: absolute;
+  z-index: 0;
+  display: block;
+  border-radius: 999px;
+  background: rgba(125, 211, 252, 0.055);
+  box-shadow: 0 0 56px rgba(56, 189, 248, 0.045);
+  filter: blur(2px);
+  animation: floatOrb linear infinite;
+}
+.site-orb-1 {
+  width: 90px;
+  height: 90px;
+  top: 12%;
+  left: 8%;
+  animation-duration: 58s;
+}
+.site-orb-2 {
+  width: 150px;
+  height: 150px;
+  top: 62%;
+  left: 76%;
+  animation-duration: 72s;
+}
+.site-orb-3 {
+  width: 62px;
+  height: 62px;
+  top: 36%;
+  left: 56%;
+  animation-duration: 64s;
+}
+.site-orb-4 {
+  width: 118px;
+  height: 118px;
+  top: 78%;
+  left: 18%;
+  animation-duration: 82s;
+}
+.site-orb-5 {
+  width: 48px;
+  height: 48px;
+  top: 18%;
+  left: 84%;
+  animation-duration: 68s;
+}
+@keyframes floatOrb {
+  0% { transform: translate3d(0, 0, 0); }
+  25% { transform: translate3d(32px, -24px, 0); }
+  50% { transform: translate3d(-18px, 28px, 0); }
+  75% { transform: translate3d(26px, 18px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+.site-header,
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
 }
 .skip-link {
   position: absolute;
@@ -746,6 +819,9 @@ code { color: var(--accent); font-family: "SFMono-Regular", Consolas, "Liberatio
   *::after { scroll-behavior: auto !important; transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
   .brand {
     transition: none !important;
+  }
+  .site-orb {
+    animation: none !important;
   }
 }
 

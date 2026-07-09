@@ -23,6 +23,12 @@ templates = Jinja2Templates(directory=str(_TEMPLATES_DIR))
 
 router = APIRouter(tags=["pages"])
 
+# Canonical-domain base used by every page's ``<link rel="canonical">`` tag.
+# The cutover to https://davidkendrick.dev/ is complete (the ``/projects/
+# practical-ai-journey/`` mount is an operational fallback only), so the
+# canonical targets point at the apex domain for every public page.
+CANONICAL_DOMAIN = "https://davidkendrick.dev"
+
 # Shared homepage context. Kept in one place so / and /index.html cannot
 # drift apart, and so future pages can mirror this pattern.
 HOMEPAGE_CONTEXT = {
@@ -33,6 +39,7 @@ HOMEPAGE_CONTEXT = {
         "and enterprise-ready lessons."
     ),
     "active_page": "index",
+    "canonical_url": f"{CANONICAL_DOMAIN}/",
     "page_aria_label": "Main page sections",
     "page_sections": [
         {"href": "#journey", "label": "Journey"},
@@ -79,6 +86,7 @@ MANITOBA_COTTAGE_SEARCH_CONTEXT = {
         "extraction, and agent-assisted workflow design."
     ),
     "active_page": "manitoba-cottage-search",
+    "canonical_url": f"{CANONICAL_DOMAIN}/manitoba-cottage-search.html",
     "page_aria_label": "Manitoba Cottage Search sections",
     "page_sections": [
         {"href": "#problem", "label": "Problem"},
@@ -129,6 +137,7 @@ STUDENT_ASSIGNMENT_TRACKER_CONTEXT = {
         "workflow."
     ),
     "active_page": "student-assignment-tracker",
+    "canonical_url": f"{CANONICAL_DOMAIN}/student-assignment-tracker.html",
     "page_aria_label": "Student Assignment Tracker sections",
     "page_sections": [
         {"href": "#problem", "label": "Problem"},
@@ -180,6 +189,7 @@ HERMES_WORKFLOW_CONTEXT = {
         "structure practical AI work."
     ),
     "active_page": "hermes-workflow",
+    "canonical_url": f"{CANONICAL_DOMAIN}/hermes-workflow.html",
     "page_aria_label": "Agent Workflow sections",
     "page_sections": [
         {"href": "#profiles", "label": "Profiles"},
@@ -198,6 +208,7 @@ LOCAL_MODELS_BENCHMARKING_CONTEXT = {
         "for speed, reliability, and memory-ceiling tradeoffs."
     ),
     "active_page": "local-models-benchmarking",
+    "canonical_url": f"{CANONICAL_DOMAIN}/local-models-benchmarking.html",
     "page_aria_label": "Local Models and Benchmarking sections",
     "page_sections": [
         {"href": "#problem", "label": "Why"},

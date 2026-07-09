@@ -794,6 +794,7 @@ code { color: var(--accent); font-family: "SFMono-Regular", Consolas, "Liberatio
     background: rgba(125, 211, 252, 0.1);
   }
   .section-shell { width: min(var(--page-width), calc(100% - 28px)); padding: 56px 0; scroll-margin-top: 88px; }
+  .closing-block { padding: 56px clamp(40px, 7vw, 64px); }
   .footer-inner { width: min(var(--page-width), calc(100% - 28px)); }
   .hero { gap: 26px; padding-top: 48px; }
   h1 { font-size: clamp(2.8rem, 14vw, 4.35rem); letter-spacing: -0.064em; }
@@ -815,6 +816,8 @@ code { color: var(--accent); font-family: "SFMono-Regular", Consolas, "Liberatio
   .table-card { margin-inline: -14px; border-radius: 0; border-left: 0; border-right: 0; }
 }
 @media (max-width: 640px) {
+  .closing-block { padding-inline: clamp(28px, 7vw, 48px); }
+
   .footer-inner {
     align-items: flex-start;
     gap: 12px 18px;

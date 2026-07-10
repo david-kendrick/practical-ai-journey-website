@@ -26,7 +26,7 @@ from pathlib import Path
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from app.config import get_settings
-from app.routes import pages
+from app.routes import pages, seo
 from app.staticfiles import RootPathAwareStaticFiles
 
 # Project root is two levels up from this file (app/main.py). The static/
@@ -74,6 +74,7 @@ def create_app() -> FastAPI:
         )
 
     app.include_router(pages.router)
+    app.include_router(seo.router)
     return app
 
 

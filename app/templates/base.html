@@ -6,10 +6,15 @@ Page templates extend this and supply:
   - canonical_url (required): absolute URL for the page's
     <link rel="canonical"> tag. The cutover to https://davidkendrick.dev/ is
     complete, so canonical targets always point at the apex domain (never at
-    the operational /projects/practical-ai-journey/ fallback mount).
+    the operational /projects/practical-ai-journey/ fallback mount). Also
+    reused as og:url so the Open Graph URL never diverges from canonical.
   - active_page (required): one of "index", "manitoba-cottage-search",
     "student-assignment-tracker", "hermes-workflow", or
     "local-models-benchmarking".
+  - og_type (optional): Open Graph object type, e.g. "website" or "article".
+    Defaults to "website" if not supplied. Case-study pages can pass
+    "article" since they're narrative write-ups; the homepage stays
+    "website".
   - page_sections (optional): list of {href, label} dicts rendered as both the
     desktop secondary nav and the mobile "This page" menu. Omit on pages that
     have no secondary section nav.
@@ -31,6 +36,21 @@ cases; prefer the variables above.
     <meta name="description" content="{{ description }}" />
     <link rel="canonical" href="{{ canonical_url }}" />
     <link rel="stylesheet" href="{{ url_for('static', path='styles.css').path }}" />
+    {# Open Graph and Twitter card metadata. og:url mirrors canonical_url
+       exactly so social previews always link to the apex-domain target.
+       og:title / og:description mirror the page title (without "| David
+       Kendrick") and description so previews agree with the document.
+       og:image is intentionally omitted: there is no existing stable
+       public image asset, and inventing one would risk broken previews.
+    #}
+    <meta property="og:title" content="{{ title }} | David Kendrick" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:url" content="{{ canonical_url }}" />
+    <meta property="og:type" content="{{ og_type | default('website', true) }}" />
+    <meta property="og:site_name" content="David Kendrick" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{ title }} | David Kendrick" />
+    <meta name="twitter:description" content="{{ description }}" />
     {% block extra_head %}{% endblock %}
   </head>
   <body{% if body_class %} class="{{ body_class }}"{% endif %}>

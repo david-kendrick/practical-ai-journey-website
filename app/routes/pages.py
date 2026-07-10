@@ -34,9 +34,8 @@ CANONICAL_DOMAIN = "https://davidkendrick.dev"
 HOMEPAGE_CONTEXT = {
     "title": "Building Practical AI Systems",
     "description": (
-        "A draft portfolio page describing David Kendrick's hands-on practical "
-        "AI journey: agents, workflow design, local models, browser automation, "
-        "and enterprise-ready lessons."
+        "Hands-on work by David Kendrick on practical AI systems: agents, "
+        "workflow design, local model experiments, and browser automation."
     ),
     "active_page": "index",
     "canonical_url": f"{CANONICAL_DOMAIN}/",

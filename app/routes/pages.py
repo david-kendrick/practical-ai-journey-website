@@ -86,6 +86,7 @@ MANITOBA_COTTAGE_SEARCH_CONTEXT = {
     ),
     "active_page": "manitoba-cottage-search",
     "canonical_url": f"{CANONICAL_DOMAIN}/manitoba-cottage-search.html",
+    "og_type": "article",
     "page_aria_label": "Manitoba Cottage Search sections",
     "page_sections": [
         {"href": "#problem", "label": "Problem"},
@@ -137,6 +138,7 @@ STUDENT_ASSIGNMENT_TRACKER_CONTEXT = {
     ),
     "active_page": "student-assignment-tracker",
     "canonical_url": f"{CANONICAL_DOMAIN}/student-assignment-tracker.html",
+    "og_type": "article",
     "page_aria_label": "Student Assignment Tracker sections",
     "page_sections": [
         {"href": "#problem", "label": "Problem"},
@@ -189,6 +191,7 @@ HERMES_WORKFLOW_CONTEXT = {
     ),
     "active_page": "hermes-workflow",
     "canonical_url": f"{CANONICAL_DOMAIN}/hermes-workflow.html",
+    "og_type": "article",
     "page_aria_label": "Agent Workflow sections",
     "page_sections": [
         {"href": "#profiles", "label": "Profiles"},
@@ -208,6 +211,7 @@ LOCAL_MODELS_BENCHMARKING_CONTEXT = {
     ),
     "active_page": "local-models-benchmarking",
     "canonical_url": f"{CANONICAL_DOMAIN}/local-models-benchmarking.html",
+    "og_type": "article",
     "page_aria_label": "Local Models and Benchmarking sections",
     "page_sections": [
         {"href": "#problem", "label": "Why"},

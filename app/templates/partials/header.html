@@ -33,7 +33,13 @@ vary via context.
 <header class="site-header">
   <div class="header-shell">
     <nav class="nav-row primary-nav" aria-label="Site pages">
-      <a class="brand" href="index.html#top" aria-label="David Kendrick portfolio home">
+      {# Brand link points at the canonical homepage path (``/``) via
+         ``url_for('home')`` so it stays root-path-aware in both the apex
+         deployment and the operational ``/projects/practical-ai-journey``
+         fallback. ``.path`` strips scheme/host so the href stays a
+         relative URL inside the document, matching the rest of the
+         internal nav (which also uses relative ``*.html`` hrefs). #}
+      <a class="brand" href="{{ url_for('home').path }}#top" aria-label="David Kendrick portfolio home">
         <span>David Kendrick</span>
       </a>
       <div class="primary-links">

@@ -115,9 +115,9 @@ def homeCompat(request: Request) -> HTMLResponse:
 MANITOBA_COTTAGE_SEARCH_CONTEXT = {
     "title": "Manitoba Cottage Search",
     "description": (
-        "Case study for Manitoba Cottage Search: a FastAPI and HTMX "
-        "listing-review app with structured intake, browser-backed "
-        "extraction, and agent-assisted workflow design."
+        "Case study: how David Kendrick built a FastAPI and HTMX "
+        "listing-review app for Manitoba cottage hunting, with "
+        "structured intake and browser-backed extraction."
     ),
     "active_page": "manitoba-cottage-search",
     "canonical_url": f"{CANONICAL_DOMAIN}/manitoba-cottage-search.html",
@@ -171,9 +171,9 @@ def manitobaCottageSearchCompat(request: Request) -> HTMLResponse:
 STUDENT_ASSIGNMENT_TRACKER_CONTEXT = {
     "title": "Student Assignment Tracker",
     "description": (
-        "Case study for a Student Assignment Tracker: an education tracker "
-        "built with FastAPI, SQLite, HTMX, and an agent-assisted development "
-        "workflow."
+        "Case study: an education tracker David Kendrick shipped with "
+        "FastAPI, SQLite, and HTMX, built through an agent-assisted "
+        "development workflow."
     ),
     "active_page": "student-assignment-tracker",
     "canonical_url": f"{CANONICAL_DOMAIN}/student-assignment-tracker.html",
@@ -228,9 +228,8 @@ def studentAssignmentTrackerCompat(request: Request) -> HTMLResponse:
 HERMES_WORKFLOW_CONTEXT = {
     "title": "How I Structured My AI Agent Workflow",
     "description": (
-        "Agent workflow page describing how David Kendrick uses Hermes "
-        "profiles, memory, skills, model routing, and review gates to "
-        "structure practical AI work."
+        "How David Kendrick structures practical AI work with Hermes "
+        "profiles, memory, skills, model routing, and review gates."
     ),
     "active_page": "hermes-workflow",
     "canonical_url": f"{CANONICAL_DOMAIN}/hermes-workflow.html",
@@ -248,9 +247,9 @@ HERMES_WORKFLOW_CONTEXT = {
 LOCAL_MODELS_BENCHMARKING_CONTEXT = {
     "title": "Local Models and Benchmarking on a Mac Mini",
     "description": (
-        "Local models page describing David Kendrick's Mac Mini M4 "
-        "experiments with Ollama, MLX, oMLX, and a repeatable coding benchmark "
-        "for speed, reliability, and memory-ceiling tradeoffs."
+        "David Kendrick's Mac Mini experiments running local models with "
+        "Ollama, MLX, and oMLX, and a repeatable coding benchmark behind "
+        "them."
     ),
     "active_page": "local-models-benchmarking",
     "canonical_url": f"{CANONICAL_DOMAIN}/local-models-benchmarking.html",

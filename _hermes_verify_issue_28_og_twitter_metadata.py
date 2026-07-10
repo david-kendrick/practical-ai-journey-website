@@ -70,65 +70,63 @@ EXPECTED_META = {
     ),
     "/manitoba-cottage-search.html": (
         "Manitoba Cottage Search",
-        "Case study for Manitoba Cottage Search: a FastAPI and HTMX "
-        "listing-review app with structured intake, browser-backed "
-        "extraction, and agent-assisted workflow design.",
+        "Case study: how David Kendrick built a FastAPI and HTMX "
+        "listing-review app for Manitoba cottage hunting, with "
+        "structured intake and browser-backed extraction.",
         f"{CANONICAL_DOMAIN}/manitoba-cottage-search.html",
         "article",
     ),
     "/manitoba-cottage-search": (
         "Manitoba Cottage Search",
-        "Case study for Manitoba Cottage Search: a FastAPI and HTMX "
-        "listing-review app with structured intake, browser-backed "
-        "extraction, and agent-assisted workflow design.",
+        "Case study: how David Kendrick built a FastAPI and HTMX "
+        "listing-review app for Manitoba cottage hunting, with "
+        "structured intake and browser-backed extraction.",
         f"{CANONICAL_DOMAIN}/manitoba-cottage-search.html",
         "article",
     ),
     "/student-assignment-tracker.html": (
         "Student Assignment Tracker",
-        "Case study for a Student Assignment Tracker: an education tracker "
-        "built with FastAPI, SQLite, HTMX, and an agent-assisted development "
-        "workflow.",
+        "Case study: an education tracker David Kendrick shipped with "
+        "FastAPI, SQLite, and HTMX, built through an agent-assisted "
+        "development workflow.",
         f"{CANONICAL_DOMAIN}/student-assignment-tracker.html",
         "article",
     ),
     "/student-assignment-tracker": (
         "Student Assignment Tracker",
-        "Case study for a Student Assignment Tracker: an education tracker "
-        "built with FastAPI, SQLite, HTMX, and an agent-assisted development "
-        "workflow.",
+        "Case study: an education tracker David Kendrick shipped with "
+        "FastAPI, SQLite, and HTMX, built through an agent-assisted "
+        "development workflow.",
         f"{CANONICAL_DOMAIN}/student-assignment-tracker.html",
         "article",
     ),
     "/hermes-workflow.html": (
         "How I Structured My AI Agent Workflow",
-        "Agent workflow page describing how David Kendrick uses Hermes "
-        "profiles, memory, skills, model routing, and review gates to "
-        "structure practical AI work.",
+        "How David Kendrick structures practical AI work with Hermes "
+        "profiles, memory, skills, model routing, and review gates.",
         f"{CANONICAL_DOMAIN}/hermes-workflow.html",
         "article",
     ),
     "/hermes-workflow": (
         "How I Structured My AI Agent Workflow",
-        "Agent workflow page describing how David Kendrick uses Hermes "
-        "profiles, memory, skills, model routing, and review gates to "
-        "structure practical AI work.",
+        "How David Kendrick structures practical AI work with Hermes "
+        "profiles, memory, skills, model routing, and review gates.",
         f"{CANONICAL_DOMAIN}/hermes-workflow.html",
         "article",
     ),
     "/local-models-benchmarking.html": (
         "Local Models and Benchmarking on a Mac Mini",
-        "Local models page describing David Kendrick's Mac Mini M4 "
-        "experiments with Ollama, MLX, oMLX, and a repeatable coding "
-        "benchmark for speed, reliability, and memory-ceiling tradeoffs.",
+        "David Kendrick's Mac Mini experiments running local models with "
+        "Ollama, MLX, and oMLX, and a repeatable coding benchmark behind "
+        "them.",
         f"{CANONICAL_DOMAIN}/local-models-benchmarking.html",
         "article",
     ),
     "/local-models-benchmarking": (
         "Local Models and Benchmarking on a Mac Mini",
-        "Local models page describing David Kendrick's Mac Mini M4 "
-        "experiments with Ollama, MLX, oMLX, and a repeatable coding "
-        "benchmark for speed, reliability, and memory-ceiling tradeoffs.",
+        "David Kendrick's Mac Mini experiments running local models with "
+        "Ollama, MLX, and oMLX, and a repeatable coding benchmark behind "
+        "them.",
         f"{CANONICAL_DOMAIN}/local-models-benchmarking.html",
         "article",
     ),

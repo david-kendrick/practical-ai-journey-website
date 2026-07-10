@@ -115,9 +115,9 @@ def homeCompat(request: Request) -> HTMLResponse:
 MANITOBA_COTTAGE_SEARCH_CONTEXT = {
     "title": "Manitoba Cottage Search",
     "description": (
-        "How David Kendrick built Manitoba Cottage Search: a FastAPI and "
-        "HTMX app with structured intake, browser-backed extraction, and "
-        "agent-assisted workflow."
+        "Case study: how David Kendrick built a FastAPI and HTMX "
+        "listing-review app for Manitoba cottage hunting, with "
+        "structured intake and browser-backed extraction."
     ),
     "active_page": "manitoba-cottage-search",
     "canonical_url": f"{CANONICAL_DOMAIN}/manitoba-cottage-search.html",
@@ -171,9 +171,9 @@ def manitobaCottageSearchCompat(request: Request) -> HTMLResponse:
 STUDENT_ASSIGNMENT_TRACKER_CONTEXT = {
     "title": "Student Assignment Tracker",
     "description": (
-        "How David Kendrick built a Student Assignment Tracker: an "
-        "education tracker on FastAPI, SQLite, and HTMX, with an "
-        "agent-assisted workflow."
+        "Case study: an education tracker David Kendrick shipped with "
+        "FastAPI, SQLite, and HTMX, built through an agent-assisted "
+        "development workflow."
     ),
     "active_page": "student-assignment-tracker",
     "canonical_url": f"{CANONICAL_DOMAIN}/student-assignment-tracker.html",
@@ -228,8 +228,8 @@ def studentAssignmentTrackerCompat(request: Request) -> HTMLResponse:
 HERMES_WORKFLOW_CONTEXT = {
     "title": "How I Structured My AI Agent Workflow",
     "description": (
-        "David Kendrick's Hermes workflow: profiles, memory, skills, "
-        "model routing, and review gates for practical AI work."
+        "How David Kendrick structures practical AI work with Hermes "
+        "profiles, memory, skills, model routing, and review gates."
     ),
     "active_page": "hermes-workflow",
     "canonical_url": f"{CANONICAL_DOMAIN}/hermes-workflow.html",
@@ -247,8 +247,9 @@ HERMES_WORKFLOW_CONTEXT = {
 LOCAL_MODELS_BENCHMARKING_CONTEXT = {
     "title": "Local Models and Benchmarking on a Mac Mini",
     "description": (
-        "How David Kendrick runs local models on a Mac Mini: Ollama, MLX, "
-        "oMLX, and a repeatable coding benchmark for practical model work."
+        "David Kendrick's Mac Mini experiments running local models with "
+        "Ollama, MLX, and oMLX, and a repeatable coding benchmark behind "
+        "them."
     ),
     "active_page": "local-models-benchmarking",
     "canonical_url": f"{CANONICAL_DOMAIN}/local-models-benchmarking.html",

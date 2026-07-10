@@ -70,61 +70,63 @@ EXPECTED_META = {
     ),
     "/manitoba-cottage-search.html": (
         "Manitoba Cottage Search",
-        "How David Kendrick built Manitoba Cottage Search: a FastAPI and "
-        "HTMX app with structured intake, browser-backed extraction, and "
-        "agent-assisted workflow.",
+        "Case study: how David Kendrick built a FastAPI and HTMX "
+        "listing-review app for Manitoba cottage hunting, with "
+        "structured intake and browser-backed extraction.",
         f"{CANONICAL_DOMAIN}/manitoba-cottage-search.html",
         "article",
     ),
     "/manitoba-cottage-search": (
         "Manitoba Cottage Search",
-        "How David Kendrick built Manitoba Cottage Search: a FastAPI and "
-        "HTMX app with structured intake, browser-backed extraction, and "
-        "agent-assisted workflow.",
+        "Case study: how David Kendrick built a FastAPI and HTMX "
+        "listing-review app for Manitoba cottage hunting, with "
+        "structured intake and browser-backed extraction.",
         f"{CANONICAL_DOMAIN}/manitoba-cottage-search.html",
         "article",
     ),
     "/student-assignment-tracker.html": (
         "Student Assignment Tracker",
-        "How David Kendrick built a Student Assignment Tracker: an "
-        "education tracker on FastAPI, SQLite, and HTMX, with an "
-        "agent-assisted workflow.",
+        "Case study: an education tracker David Kendrick shipped with "
+        "FastAPI, SQLite, and HTMX, built through an agent-assisted "
+        "development workflow.",
         f"{CANONICAL_DOMAIN}/student-assignment-tracker.html",
         "article",
     ),
     "/student-assignment-tracker": (
         "Student Assignment Tracker",
-        "How David Kendrick built a Student Assignment Tracker: an "
-        "education tracker on FastAPI, SQLite, and HTMX, with an "
-        "agent-assisted workflow.",
+        "Case study: an education tracker David Kendrick shipped with "
+        "FastAPI, SQLite, and HTMX, built through an agent-assisted "
+        "development workflow.",
         f"{CANONICAL_DOMAIN}/student-assignment-tracker.html",
         "article",
     ),
     "/hermes-workflow.html": (
         "How I Structured My AI Agent Workflow",
-        "David Kendrick's Hermes workflow: profiles, memory, skills, "
-        "model routing, and review gates for practical AI work.",
+        "How David Kendrick structures practical AI work with Hermes "
+        "profiles, memory, skills, model routing, and review gates.",
         f"{CANONICAL_DOMAIN}/hermes-workflow.html",
         "article",
     ),
     "/hermes-workflow": (
         "How I Structured My AI Agent Workflow",
-        "David Kendrick's Hermes workflow: profiles, memory, skills, "
-        "model routing, and review gates for practical AI work.",
+        "How David Kendrick structures practical AI work with Hermes "
+        "profiles, memory, skills, model routing, and review gates.",
         f"{CANONICAL_DOMAIN}/hermes-workflow.html",
         "article",
     ),
     "/local-models-benchmarking.html": (
         "Local Models and Benchmarking on a Mac Mini",
-        "How David Kendrick runs local models on a Mac Mini: Ollama, MLX, "
-        "oMLX, and a repeatable coding benchmark for practical model work.",
+        "David Kendrick's Mac Mini experiments running local models with "
+        "Ollama, MLX, and oMLX, and a repeatable coding benchmark behind "
+        "them.",
         f"{CANONICAL_DOMAIN}/local-models-benchmarking.html",
         "article",
     ),
     "/local-models-benchmarking": (
         "Local Models and Benchmarking on a Mac Mini",
-        "How David Kendrick runs local models on a Mac Mini: Ollama, MLX, "
-        "oMLX, and a repeatable coding benchmark for practical model work.",
+        "David Kendrick's Mac Mini experiments running local models with "
+        "Ollama, MLX, and oMLX, and a repeatable coding benchmark behind "
+        "them.",
         f"{CANONICAL_DOMAIN}/local-models-benchmarking.html",
         "article",
     ),

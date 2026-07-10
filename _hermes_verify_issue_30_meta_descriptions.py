@@ -57,8 +57,11 @@ PUBLIC_ROUTES = [
 ]
 
 # Approved issue #30 copy. Mirrors the *_CONTEXT["description"] fields in
-# app/routes/pages.py. The homepage value is unchanged from issue #27; the
-# four secondary pages were tightened as approved by the parent card.
+# app/routes/pages.py verbatim from the marketing-seo approved copy locked in
+# by the parent card. The homepage value is unchanged from issue #27; the
+# four secondary pages are the exact approved descriptions (not close
+# rewrites), so a single edit to app/routes/pages.py cannot drift away
+# from the marketing-approved wording.
 EXPECTED_DESCRIPTIONS: dict[str, str] = {
     "/": (
         "Hands-on work by David Kendrick on practical AI systems: agents, "
@@ -69,40 +72,42 @@ EXPECTED_DESCRIPTIONS: dict[str, str] = {
         "workflow design, local model experiments, and browser automation."
     ),
     "/manitoba-cottage-search.html": (
-        "How David Kendrick built Manitoba Cottage Search: a FastAPI and "
-        "HTMX app with structured intake, browser-backed extraction, and "
-        "agent-assisted workflow."
+        "Case study: how David Kendrick built a FastAPI and HTMX "
+        "listing-review app for Manitoba cottage hunting, with "
+        "structured intake and browser-backed extraction."
     ),
     "/manitoba-cottage-search": (
-        "How David Kendrick built Manitoba Cottage Search: a FastAPI and "
-        "HTMX app with structured intake, browser-backed extraction, and "
-        "agent-assisted workflow."
+        "Case study: how David Kendrick built a FastAPI and HTMX "
+        "listing-review app for Manitoba cottage hunting, with "
+        "structured intake and browser-backed extraction."
     ),
     "/student-assignment-tracker.html": (
-        "How David Kendrick built a Student Assignment Tracker: an "
-        "education tracker on FastAPI, SQLite, and HTMX, with an "
-        "agent-assisted workflow."
+        "Case study: an education tracker David Kendrick shipped with "
+        "FastAPI, SQLite, and HTMX, built through an agent-assisted "
+        "development workflow."
     ),
     "/student-assignment-tracker": (
-        "How David Kendrick built a Student Assignment Tracker: an "
-        "education tracker on FastAPI, SQLite, and HTMX, with an "
-        "agent-assisted workflow."
+        "Case study: an education tracker David Kendrick shipped with "
+        "FastAPI, SQLite, and HTMX, built through an agent-assisted "
+        "development workflow."
     ),
     "/hermes-workflow.html": (
-        "David Kendrick's Hermes workflow: profiles, memory, skills, "
-        "model routing, and review gates for practical AI work."
+        "How David Kendrick structures practical AI work with Hermes "
+        "profiles, memory, skills, model routing, and review gates."
     ),
     "/hermes-workflow": (
-        "David Kendrick's Hermes workflow: profiles, memory, skills, "
-        "model routing, and review gates for practical AI work."
+        "How David Kendrick structures practical AI work with Hermes "
+        "profiles, memory, skills, model routing, and review gates."
     ),
     "/local-models-benchmarking.html": (
-        "How David Kendrick runs local models on a Mac Mini: Ollama, MLX, "
-        "oMLX, and a repeatable coding benchmark for practical model work."
+        "David Kendrick's Mac Mini experiments running local models with "
+        "Ollama, MLX, and oMLX, and a repeatable coding benchmark behind "
+        "them."
     ),
     "/local-models-benchmarking": (
-        "How David Kendrick runs local models on a Mac Mini: Ollama, MLX, "
-        "oMLX, and a repeatable coding benchmark for practical model work."
+        "David Kendrick's Mac Mini experiments running local models with "
+        "Ollama, MLX, and oMLX, and a repeatable coding benchmark behind "
+        "them."
     ),
 }
 

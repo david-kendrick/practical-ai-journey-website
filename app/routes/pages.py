@@ -16,10 +16,39 @@ from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
+from app.seo.schema import build_homepage_graph, build_page_document
+
 # Templates live alongside the app package so imports stay stable regardless
 # of the current working directory (uvicorn, TestClient, ad-hoc shells).
 _TEMPLATES_DIR = Path(__file__).resolve().parent.parent / "templates"
 templates = Jinja2Templates(directory=str(_TEMPLATES_DIR))
+
+
+def _homepage_json_ld() -> dict:
+    """Build the homepage JSON-LD graph payload.
+
+    Kept as a thin wrapper around :func:`app.seo.schema.build_homepage_graph`
+    so the page router owns the homepage-vs-secondary-page branching in
+    one place rather than in every template.
+    """
+    return build_homepage_graph()
+
+
+def _page_json_ld(context: dict) -> dict:
+    """Build a per-page JSON-LD document.
+
+    Pulled out so every secondary page (Manitoba Cottage Search, Student
+    Assignment Tracker, Hermes Workflow, Local Models) gets a node keyed
+    by its existing route context (``title`` / ``description`` /
+    ``canonical_url`` / ``og_type``) rather than inventing any new facts.
+    """
+    og_type = context.get("og_type", "website") or "website"
+    return build_page_document(
+        headline=context["title"],
+        description=context["description"],
+        url=context["canonical_url"],
+        og_type=og_type,
+    )
 
 router = APIRouter(tags=["pages"])
 
@@ -50,8 +79,14 @@ HOMEPAGE_CONTEXT = {
 
 
 def _render_homepage(request: Request) -> HTMLResponse:
-    """Render the homepage template with the shared context."""
-    return templates.TemplateResponse(request, "pages/index.html", HOMEPAGE_CONTEXT)
+    """Render the homepage template with the shared context.
+
+    A fresh context is constructed per request so per-request derived
+    fields (currently ``json_ld``) can be attached without mutating the
+    shared :data:`HOMEPAGE_CONTEXT`.
+    """
+    context = {**HOMEPAGE_CONTEXT, "json_ld": _homepage_json_ld()}
+    return templates.TemplateResponse(request, "pages/index.html", context)
 
 
 @router.get("/", include_in_schema=True)
@@ -99,10 +134,14 @@ MANITOBA_COTTAGE_SEARCH_CONTEXT = {
 
 def _render_manitoba_cottage_search(request: Request) -> HTMLResponse:
     """Render the Manitoba Cottage Search template with the shared context."""
+    context = {
+        **MANITOBA_COTTAGE_SEARCH_CONTEXT,
+        "json_ld": _page_json_ld(MANITOBA_COTTAGE_SEARCH_CONTEXT),
+    }
     return templates.TemplateResponse(
         request,
         "pages/manitoba-cottage-search.html",
-        MANITOBA_COTTAGE_SEARCH_CONTEXT,
+        context,
     )
 
 
@@ -151,11 +190,15 @@ STUDENT_ASSIGNMENT_TRACKER_CONTEXT = {
 
 
 def _render_student_assignment_tracker(request: Request) -> HTMLResponse:
-    """Render the Student Assignment Tracker template with the shared context."""
+    """Render the Student Assignment Tracker template with shared context."""
+    context = {
+        **STUDENT_ASSIGNMENT_TRACKER_CONTEXT,
+        "json_ld": _page_json_ld(STUDENT_ASSIGNMENT_TRACKER_CONTEXT),
+    }
     return templates.TemplateResponse(
         request,
         "pages/student-assignment-tracker.html",
-        STUDENT_ASSIGNMENT_TRACKER_CONTEXT,
+        context,
     )
 
 
@@ -225,10 +268,14 @@ LOCAL_MODELS_BENCHMARKING_CONTEXT = {
 
 def _render_hermes_workflow(request: Request) -> HTMLResponse:
     """Render the Hermes Workflow template with the shared context."""
+    context = {
+        **HERMES_WORKFLOW_CONTEXT,
+        "json_ld": _page_json_ld(HERMES_WORKFLOW_CONTEXT),
+    }
     return templates.TemplateResponse(
         request,
         "pages/hermes-workflow.html",
-        HERMES_WORKFLOW_CONTEXT,
+        context,
     )
 
 
@@ -250,10 +297,14 @@ def hermesWorkflowCompat(request: Request) -> HTMLResponse:
 
 def _render_local_models_benchmarking(request: Request) -> HTMLResponse:
     """Render the Local Models and Benchmarking template with shared context."""
+    context = {
+        **LOCAL_MODELS_BENCHMARKING_CONTEXT,
+        "json_ld": _page_json_ld(LOCAL_MODELS_BENCHMARKING_CONTEXT),
+    }
     return templates.TemplateResponse(
         request,
         "pages/local-models-benchmarking.html",
-        LOCAL_MODELS_BENCHMARKING_CONTEXT,
+        context,
     )
 
 

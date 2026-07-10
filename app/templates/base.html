@@ -20,6 +20,11 @@ Page templates extend this and supply:
     have no secondary section nav.
   - page_aria_label (optional): aria-label for the secondary nav, e.g.
     "Manitoba Cottage Search sections". Defaults to "Page sections".
+  - json_ld (required): dict or structured-data shape consumed by the
+    ``<script type="application/ld+json">`` block. The routes build it
+    from the other context fields (``title``, ``description``,
+    ``canonical_url``, ``og_type``) via ``app.seo.schema``; templates
+    should not invent new fields.
   - body_class (optional): extra class for <body>.
   - page_class (optional): extra class for <main>.
 
@@ -51,6 +56,18 @@ cases; prefer the variables above.
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="{{ title }} | David Kendrick" />
     <meta name="twitter:description" content="{{ description }}" />
+    {# JSON-LD structured data. Built from the route context in Python
+       (``app.seo.schema``) and serialized via Jinja's ``tojson`` filter so
+       we never hand-build fragile JSON strings. Rendered as a single
+       ``<script type="application/ld+json">`` block per page; some
+       pages emit a single ``@graph`` object (homepage), others emit a
+       single ``CreativeWork`` / ``Article`` node. The ``tojson`` filter
+       is HTML-safe by default (it returns a ``Markup`` instance) so
+       block-level payloads cannot accidentally close the surrounding
+       ``<script>`` element. ``json_ld`` is required for every page —
+       it is wired in :func:`app.routes.pages._render_*` helpers.
+    #}
+    <script type="application/ld+json">{{ json_ld | tojson }}</script>
     {% block extra_head %}{% endblock %}
   </head>
   <body{% if body_class %} class="{{ body_class }}"{% endif %}>

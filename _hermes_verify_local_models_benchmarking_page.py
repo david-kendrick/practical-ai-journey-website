@@ -29,6 +29,7 @@ REQUIRED_TEXT = [
     "A useful language model was not automatically a reliable reasoner",
     "99.34 seconds",
     "12.7 output tokens per second",
+    "48 legs, not 38",
     "Verify the effective ceiling",
     "roughly 21GiB",
     'href="#benchmark-results"',

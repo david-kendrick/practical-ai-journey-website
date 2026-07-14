@@ -165,7 +165,7 @@
                 <td><code>Qwen3.5-9B-Fable-5-v1-oQ8</code></td>
                 <td>2/4 tests</td>
                 <td>202.04s</td>
-                <td>A model-specific precise-coding profile made the result worse: 1/4 tests in 220.39s.</td>
+                <td>Ran cleanly under oMLX, but a model-specific precise-coding profile made the result worse: 1/4 tests in 220.39s.</td>
               </tr>
               <tr>
                 <td><code>Ornith-1.0-9B-4bit</code></td>
@@ -227,8 +227,8 @@
             <span>Where it failed</span>
             <h3>Plausible language hid a reasoning error</h3>
             <p>
-              It answered a simple chickens-and-rabbits algebra problem incorrectly, then failed to identify that error
-              in its own self-check. That makes it useful for casual language work, not a trusted reasoning assistant.
+              It answered a 14-heads, 38-legs puzzle with 10 rabbits and 4 chickens—48 legs, not 38—then failed to
+              identify that error in its own self-check. It is useful for casual language work, not trusted reasoning.
             </p>
           </article>
         </div>

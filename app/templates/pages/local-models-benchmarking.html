@@ -151,15 +151,21 @@
             <tbody>
               <tr>
                 <td><code>Qwen3.6-35B-A3B-RotorQuant-MLX-3bit</code></td>
-                <td>3/4 tests</td>
-                <td>62.03s</td>
-                <td>Fastest strong run I observed, but another run the same day failed completely with invalid Python.</td>
+                <td>4/4 tests</td>
+                <td>72.33s</td>
+                <td>First perfect sample on the canonical benchmark, though earlier runs still showed meaningful variance.</td>
               </tr>
               <tr>
                 <td><code>gemma-4-12B-it-8bit</code></td>
                 <td>3/4 tests</td>
                 <td>239.09s</td>
                 <td>Much slower, but more conventional and easier to reason about; failed CSV complex-value encoding.</td>
+              </tr>
+              <tr>
+                <td><code>Qwen3.5-9B-Fable-5-v1-oQ8</code></td>
+                <td>2/4 tests</td>
+                <td>202.04s</td>
+                <td>A model-specific precise-coding profile made the result worse: 1/4 tests in 220.39s.</td>
               </tr>
               <tr>
                 <td><code>Ornith-1.0-9B-4bit</code></td>
@@ -169,9 +175,9 @@
               </tr>
               <tr>
                 <td><code>Qwen3.6-27B-MLX-4bit</code></td>
-                <td>0/4 tests</td>
+                <td>No completed run</td>
                 <td>n/a</td>
-                <td>Could not be benchmarked fairly under the current Mac Mini Metal memory ceiling.</td>
+                <td>Could not complete under the earlier default Mac Mini Metal memory ceiling; it has not been rerun under the raised limit.</td>
               </tr>
             </tbody>
           </table>
@@ -180,10 +186,10 @@
         <div class="feature-grid two-up">
           <article class="feature-card">
             <span>Speed vs. trust</span>
-            <h3>The fastest result was not automatically the best result</h3>
+            <h3>The highest score still needed context</h3>
             <p>
-              Qwen35 produced the fastest strong run, but it was not stable enough yet to call the benchmark solved.
-              That was one of the most useful lessons: local model evaluation needs repeated runs, not cherry-picked wins.
+              Qwen3.6 35B produced the first 4/4 sample, but earlier runs ranged from 3/4 to invalid Python. The result
+              established the highest observed ceiling, not proof of perfect run-to-run reliability.
             </p>
           </article>
           <article class="feature-card">
@@ -192,6 +198,37 @@
             <p>
               The task required parsing, CLI behavior, serialization, and error handling. That made failures legible:
               not just “this answer felt weak,” but exactly where the generated code broke down.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="chat-reasoning" class="section-shell feature-section" aria-labelledby="chat-title">
+        <div class="section-heading">
+          <p class="eyebrow">Chat and reasoning fit</p>
+          <h2 id="chat-title">A useful language model was not automatically a reliable reasoner</h2>
+          <p>
+            I also tested a 12B Gemma 4 variant on ten conversational tasks covering explanation, rewriting,
+            troubleshooting, safety questions, factual caution, creative language, and basic reasoning. The completed
+            run took 99.34 seconds for 1,264 completion tokens—about 12.7 output tokens per second.
+          </p>
+        </div>
+
+        <div class="feature-grid two-up">
+          <article class="feature-card">
+            <span>Where it worked</span>
+            <h3>Good low-stakes language help</h3>
+            <p>
+              The model gave clear explanations, a practical troubleshooting checklist, a strong professional rewrite,
+              sensible charger-safety questions, and appropriate caution when asked for current facts without internet access.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span>Where it failed</span>
+            <h3>Plausible language hid a reasoning error</h3>
+            <p>
+              It answered a simple chickens-and-rabbits algebra problem incorrectly, then failed to identify that error
+              in its own self-check. That makes it useful for casual language work, not a trusted reasoning assistant.
             </p>
           </article>
         </div>
@@ -220,8 +257,8 @@
           </article>
           <article>
             <span class="decision-step">03</span>
-            <strong>Respect the Metal cap</strong>
-            <span>The Mac Mini hit a 17.8GB ceiling that blocked fair 27B-class testing even when the model could partly load.</span>
+            <strong>Verify the effective ceiling</strong>
+            <span>The initial 17.8GB macOS limit was lower than the oMLX setting. Raising the runtime kernel limit exposed roughly 21GiB and enabled the perfect 35B run.</span>
           </article>
           <article>
             <span class="decision-step">04</span>
@@ -239,7 +276,8 @@
               Running local models on a Mac Mini made the tradeoffs concrete. Privacy and cost are real reasons to care
               about local serving, but the more interesting lesson was architectural: the useful questions are about
               serving shape, repeatability, memory ceilings, routing, and when a local model is actually good enough
-              for a specific job.
+              for a specific job. Coding correctness, conversational usefulness, and reasoning reliability turned out
+              to be separate qualities—not one general model score.
             </p>
             <p>
               That is the angle I find professionally useful. Local AI is not just a novelty demo. It is a systems

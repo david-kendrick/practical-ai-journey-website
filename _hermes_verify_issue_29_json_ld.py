@@ -128,16 +128,16 @@ EXPECTED_META = {
     "/local-models-benchmarking.html": (
         "Local Models and Benchmarking on a Mac Mini",
         "David Kendrick's Mac Mini experiments running local models with "
-        "Ollama, MLX, and oMLX, and a repeatable coding benchmark behind "
-        "them.",
+        "Ollama, MLX, and oMLX, with repeatable coding and chat/reasoning "
+        "benchmarks behind them.",
         f"{CANONICAL_DOMAIN}/local-models-benchmarking.html",
         "article",
     ),
     "/local-models-benchmarking": (
         "Local Models and Benchmarking on a Mac Mini",
         "David Kendrick's Mac Mini experiments running local models with "
-        "Ollama, MLX, and oMLX, and a repeatable coding benchmark behind "
-        "them.",
+        "Ollama, MLX, and oMLX, with repeatable coding and chat/reasoning "
+        "benchmarks behind them.",
         f"{CANONICAL_DOMAIN}/local-models-benchmarking.html",
         "article",
     ),

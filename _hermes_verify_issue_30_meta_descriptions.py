@@ -101,13 +101,13 @@ EXPECTED_DESCRIPTIONS: dict[str, str] = {
     ),
     "/local-models-benchmarking.html": (
         "David Kendrick's Mac Mini experiments running local models with "
-        "Ollama, MLX, and oMLX, and a repeatable coding benchmark behind "
-        "them."
+        "Ollama, MLX, and oMLX, with repeatable coding and chat/reasoning "
+        "benchmarks behind them."
     ),
     "/local-models-benchmarking": (
         "David Kendrick's Mac Mini experiments running local models with "
-        "Ollama, MLX, and oMLX, and a repeatable coding benchmark behind "
-        "them."
+        "Ollama, MLX, and oMLX, with repeatable coding and chat/reasoning "
+        "benchmarks behind them."
     ),
 }
 

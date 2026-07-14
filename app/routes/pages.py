@@ -248,8 +248,8 @@ LOCAL_MODELS_BENCHMARKING_CONTEXT = {
     "title": "Local Models and Benchmarking on a Mac Mini",
     "description": (
         "David Kendrick's Mac Mini experiments running local models with "
-        "Ollama, MLX, and oMLX, and a repeatable coding benchmark behind "
-        "them."
+        "Ollama, MLX, and oMLX, with repeatable coding and chat/reasoning "
+        "benchmarks behind them."
     ),
     "active_page": "local-models-benchmarking",
     "canonical_url": f"{CANONICAL_DOMAIN}/local-models-benchmarking.html",
@@ -259,6 +259,7 @@ LOCAL_MODELS_BENCHMARKING_CONTEXT = {
         {"href": "#problem", "label": "Why"},
         {"href": "#atlas-setup", "label": "Mac Mini setup"},
         {"href": "#benchmark-results", "label": "Results"},
+        {"href": "#chat-reasoning", "label": "Chat fit"},
         {"href": "#constraints", "label": "Lessons"},
         {"href": "#takeaways", "label": "Takeaways"},
     ],

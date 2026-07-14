@@ -57,6 +57,15 @@ def main() -> int:
     client = TestClient(app)
     bodies: dict[str, str] = {}
 
+    stylesheet = client.get("/static/styles.css")
+    if stylesheet.status_code != 200:
+        print(f"[FAIL] stylesheet: expected 200, got {stylesheet.status_code}")
+        return 1
+    if ".decision-step { align-self: start;" not in stylesheet.text:
+        print("[FAIL] stylesheet: decision-step badges can stretch in grid rows")
+        return 1
+    print("[PASS] stylesheet: decision-step badges keep intrinsic height")
+
     for route in ROUTES:
         response = client.get(route)
         if response.status_code != 200:

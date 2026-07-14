@@ -457,7 +457,7 @@ code { color: var(--accent); font-family: "SFMono-Regular", Consolas, "Liberatio
 .decision-flow article { position: relative; display: grid; gap: 10px; padding: 22px; }
 .decision-flow article:not(:last-child)::after { position: absolute; top: 50%; right: -12px; z-index: 2; width: 22px; height: 2px; content: ""; background: var(--line-strong); }
 .decision-flow strong { color: var(--text); line-height: 1.2; }
-.decision-step { width: fit-content; padding: 4px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent) !important; font-size: 0.74rem; font-weight: 850; letter-spacing: 0.08em; }
+.decision-step { align-self: start; width: fit-content; padding: 4px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent) !important; font-size: 0.74rem; font-weight: 850; letter-spacing: 0.08em; }
 .callout-card { margin-top: 18px; background: radial-gradient(circle at 100% 0%, rgba(125, 211, 252, 0.14), transparent 18rem), rgba(20, 29, 43, 0.84); }
 .callout-card .eyebrow { margin-bottom: 10px; }
 

@@ -8,9 +8,9 @@ Run from the repo root with the project venv active::
 
 What this script checks:
 
-* header brand link href ends with ``/#top`` (root mode) or
-  ``/projects/practical-ai-journey/#top`` (subpath mode), never
-  ``index.html#top``.
+* header brand link href is ``/`` (root mode) or
+  ``/projects/practical-ai-journey/`` (subpath mode), with no fragment and
+  never ``index.html``.
 * footer ``Home`` link href ends with ``/`` (root) or
   ``/projects/practical-ai-journey/`` (subpath), never ``index.html``.
 * each case-study "Back to examples" link href ends with ``/#examples``
@@ -90,7 +90,7 @@ def _build_client(root_path: str | None) -> TestClient:
 
 
 _BRAND_RE = re.compile(
-    r'href="([^"]*#top)"[^>]*aria-label="David Kendrick portfolio home"',
+    r'href="([^"]+)"[^>]*aria-label="David Kendrick portfolio home"',
 )
 _FOOTER_HOME_RE = re.compile(
     r'<nav class="footer-nav"[^>]*>.*?<a href="([^"]+)">Home</a>',
@@ -133,17 +133,11 @@ def _verify_brand_and_footer(
         raise AssertionError(f"{route}: brand link not found")
     brand_href = brand_match.group(1)
     _forbid_index_html(brand_href, f"{route} brand", root_path)
-    if not brand_href.startswith(expected_prefix + "#top") and brand_href != expected_prefix + "#top":
-        # Accept ``/{root_path}/#top`` or ``/...#top`` patterns
-        if not brand_href.endswith("#top"):
-            raise AssertionError(
-                f"{route}: brand href does not end with #top: {brand_href!r}"
-            )
-        if not brand_href.startswith(expected_prefix.rstrip("/")):
-            raise AssertionError(
-                f"{route}: brand href does not start with expected prefix "
-                f"{expected_prefix!r}: {brand_href!r}"
-            )
+    if brand_href != expected_prefix:
+        raise AssertionError(
+            f"{route}: brand href should be {expected_prefix!r} "
+            f"but got {brand_href!r}"
+        )
     print(f"[PASS] {route} brand={brand_href}")
 
     footer_match = _FOOTER_HOME_RE.search(body)

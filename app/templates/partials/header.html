@@ -39,7 +39,7 @@ vary via context.
          fallback. ``.path`` strips scheme/host so the href stays a
          relative URL inside the document, matching the rest of the
          internal nav (which also uses relative ``*.html`` hrefs). #}
-      <a class="brand" href="{{ url_for('home').path }}#top" aria-label="David Kendrick portfolio home">
+      <a class="brand" href="{{ url_for('home').path }}" aria-label="David Kendrick portfolio home">
         <span>David Kendrick</span>
       </a>
       <div class="primary-links">

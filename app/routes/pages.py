@@ -259,7 +259,7 @@ LOCAL_MODELS_BENCHMARKING_CONTEXT = {
         {"href": "#problem", "label": "Why"},
         {"href": "#atlas-setup", "label": "Mac Mini setup"},
         {"href": "#benchmark-results", "label": "Results"},
-        {"href": "#chat-reasoning", "label": "Chat fit"},
+        {"href": "#chat-reasoning", "label": "Task fit"},
         {"href": "#constraints", "label": "Lessons"},
         {"href": "#takeaways", "label": "Takeaways"},
     ],

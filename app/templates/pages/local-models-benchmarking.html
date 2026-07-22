@@ -174,6 +174,12 @@
                 <td>Faster than Gemma but materially weaker on parsing correctness and CSV behavior.</td>
               </tr>
               <tr>
+                <td><code>Ternary-Bonsai-27B-mlx-2bit</code></td>
+                <td>1/4 tests</td>
+                <td>167.67s</td>
+                <td>Compact at 8.92GB and operational in oMLX, but weaker than Qwen3.6 35B on the canonical coding task.</td>
+              </tr>
+              <tr>
                 <td><code>Qwen3.6-27B-MLX-4bit</code></td>
                 <td>No completed run</td>
                 <td>n/a</td>
@@ -205,30 +211,58 @@
 
       <section id="chat-reasoning" class="section-shell feature-section" aria-labelledby="chat-title">
         <div class="section-heading">
-          <p class="eyebrow">Chat and reasoning fit</p>
-          <h2 id="chat-title">A useful language model was not automatically a reliable reasoner</h2>
+          <p class="eyebrow">Task-specific model fit</p>
+          <h2 id="chat-title">Bonsai was stronger for chat, but not for coding</h2>
           <p>
-            I also tested a 12B Gemma 4 variant on ten conversational tasks covering explanation, rewriting,
-            troubleshooting, safety questions, factual caution, creative language, and basic reasoning. The completed
-            run took 99.34 seconds for 1,264 completion tokens—about 12.7 output tokens per second.
+            I tested Ternary Bonsai 27B and a 12B Gemma 4 variant on the same ten conversational tasks, covering
+            explanation, rewriting, troubleshooting, safety questions, factual caution, creative language, and basic
+            reasoning. The comparison reinforced why coding and conversation need separate evaluations.
           </p>
+        </div>
+
+        <div class="table-card benchmark-table" aria-label="Local model chat and reasoning comparison table">
+          <table>
+            <thead>
+              <tr>
+                <th>Model and configuration</th>
+                <th>Completed result</th>
+                <th>Wall time</th>
+                <th>Model footprint</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Ternary-Bonsai-27B-mlx-2bit</code>, thinking disabled</td>
+                <td>Completed all 10 tasks; both math problems correct</td>
+                <td>88.26s</td>
+                <td>8.92GB</td>
+              </tr>
+              <tr>
+                <td><code>gemma-4-12b-coder-fable5-composer2.5-4bit</code></td>
+                <td>Completed all 10 tasks; failed the chickens-and-rabbits problem</td>
+                <td>99.34s</td>
+                <td>7.03GB</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <div class="feature-grid two-up">
           <article class="feature-card">
-            <span>Where it worked</span>
-            <h3>Good low-stakes language help</h3>
+            <span>General chat</span>
+            <h3>Bonsai became the preferred local chat model</h3>
             <p>
-              The model gave clear explanations, a practical troubleshooting checklist, a strong professional rewrite,
-              sensible charger-safety questions, and appropriate caution when asked for current facts without internet access.
+              With thinking disabled, Bonsai completed the full prompt 11.2% faster than Gemma, answered more concisely,
+              and correctly solved both math tasks. It used more memory, but its 8.92GB footprint still fit comfortably.
             </p>
           </article>
           <article class="feature-card">
-            <span>Where it failed</span>
-            <h3>Plausible language hid a reasoning error</h3>
+            <span>Configuration and limits</span>
+            <h3>The better chat result came with caveats</h3>
             <p>
-              It answered a 14-heads, 38-legs puzzle with 10 rabbits and 4 chickens—48 legs, not 38—then failed to
-              identify that error in its own self-check. It is useful for casual language work, not trusted reasoning.
+              Bonsai's default thinking mode exposed a long scratchpad and exhausted a 2,200-token limit before the final
+              answer. It also passed only 1/4 coding tests, so I kept Qwen3.6 35B as the local coding leader rather than
+              treating one model as the best choice for every task.
             </p>
           </article>
         </div>
